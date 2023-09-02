@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #E5FFFA;
+    font-family: 'Roboto', sans-serif;
+}
+
+.bar{
+    background-color: #EDF4F2;
+    margin: 50px;
+    box-shadow: 0px 4px 20px rgb(24, 23, 23);
+    border-radius: 15px;
+    height: 450px;
+
+}
+.clientes-tit{
+    margin-top: 25px;
+    padding: -5px;
+}
+
+.image-profile img{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    margin: 10px 40px 10px 30px;
+
+}
+.text-description {
+    margin-top: 20px;
+    color: gray;
+    font-size: 1rem;
+    
+}
+
+
+
+.fondo {
+    background-color: white;
+    margin-top: 35px;
+    box-shadow: 0px 4px 20px rgb(24, 23, 23);
+    border-radius: 15px;
+    list-style: none;
+    height: 400px;
+    padding: 10px;
+}
+
+
+
+
+
+
+
+
+

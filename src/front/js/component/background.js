@@ -24,7 +24,7 @@ export const Background = () => {
                             <Link className="nav-link" to="#"><i className="fas fa-file"></i>Proyectos</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="#">Clientes</Link>
+                            <Link className="nav-link" to="clientList">Clientes</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="#">Cotizaciones</Link>
