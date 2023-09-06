@@ -10,15 +10,21 @@ body {
 }
 
 .bar{
-    background-color: #EDF4F2;
-    margin: 50px;
-    box-shadow: 0px 4px 20px rgb(24, 23, 23);
+    margin-left: 75px;
     border-radius: 15px;
     height: 450px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
 
+.back{
+    border-radius: 15px;
+    margin-bottom: 10px;
 }
 .clientes-tit{
-    margin-top: 25px;
+    margin-left: 75px;
+    margin-bottom: 10px;
+    margin-top: 10px;
     padding: -5px;
 }
 
@@ -40,7 +46,7 @@ body {
 
 .fondo {
     background-color: white;
-    margin-top: 35px;
+    margin-left: 75px;
     box-shadow: 0px 4px 20px rgb(24, 23, 23);
     border-radius: 15px;
     list-style: none;

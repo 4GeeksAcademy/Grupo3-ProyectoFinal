@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const Background = () => {
+export const Background = (props) => {
     const [isMenuOpen, setMenuOpen] = useState(false); // Estado para el menú de hamburguesa
 
     return (
-        <div className="container-fluid p-0 background">
+         <div className="container-fluid p-0 background">
             {/* Menu hamburguesa*/}
             <nav className="navbar navbar-light d-lg-none">
                 <button className="navbar-toggler" type="button" onClick={() => setMenuOpen(!isMenuOpen)}>
@@ -24,7 +24,7 @@ export const Background = () => {
                             <Link className="nav-link" to="#"><i className="fas fa-file"></i>Proyectos</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="clientList">Clientes</Link>
+                            <Link  to={`/clientList`} className="nav-link">Clientes </Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="#">Cotizaciones</Link>
@@ -49,7 +49,7 @@ export const Background = () => {
                 </div>
                 <ul className="main-links m-0 p-0">
                     <li><Link to="#">Proyectos</Link></li>
-                    <li><Link to="#">Clientes</Link></li>
+                    <li><Link  to={`/clientList`} className="nav-link">Clientes </Link></li>
                     <li><Link to="#">Cotizaciones</Link></li>
                 </ul>
                 <ul className="bottom-links m-0 p-0">
@@ -57,6 +57,11 @@ export const Background = () => {
                     <li><Link to="#">Cerrar Sesión</Link></li>
                 </ul>
             </div>
+
+            {
+                props.children
+            }
+
         </div>
     );
 };
