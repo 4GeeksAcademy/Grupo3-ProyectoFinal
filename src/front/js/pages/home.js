@@ -8,7 +8,9 @@ export const Home = () => {
 
 	return (
 		<>
-			<Background />
+			<Background>
+
+			</Background>
 		</>
 
 	);

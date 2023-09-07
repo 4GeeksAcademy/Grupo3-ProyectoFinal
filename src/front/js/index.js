@@ -6,6 +6,7 @@ import ReactDOM from "react-dom";
 import "../styles/index.css";
 import "../styles/background.css";
 import "../styles/createProject.css";
+import "../styles/listProject.css";
 
 
 //import your own components
