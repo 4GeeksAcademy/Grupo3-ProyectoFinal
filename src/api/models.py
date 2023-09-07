@@ -41,6 +41,9 @@ class Client(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     user = db.relationship("User")
 
+    def __repr__(self):
+        return f"Cliente llamado {self.full_name}"
+
     def serialize(self):
         return {
             "id": self.id,
