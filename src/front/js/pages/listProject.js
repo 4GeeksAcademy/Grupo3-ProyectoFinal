@@ -14,7 +14,7 @@ export const ListProject = () => {
                     </div>
                     <div className="row row-cols-auto g-4">
                         <div className="col w-auto">
-                            <div className="card rounded-4">
+                            <div className="card rounded-4 shadow">
                                 <div className="card-body">
                                     <h5 className="card-title text-center">Nombre Proyecto</h5>
                                     <p className="card-text">Cliente asociado</p>
@@ -26,7 +26,7 @@ export const ListProject = () => {
                             </div>
                         </div>
                         <div className="col w-auto">
-                            <div className="card rounded-4">
+                            <div className="card rounded-4 shadow">
                                 <div className="card-body">
                                     <h5 className="card-title text-center">Nombre Proyecto</h5>
                                     <p className="card-text">Cliente asociado</p>
@@ -38,7 +38,7 @@ export const ListProject = () => {
                             </div>
                         </div>
                         <div className="col w-auto">
-                            <div className="card rounded-4">
+                            <div className="card rounded-4 shadow">
                                 <div className="card-body">
                                     <h5 className="card-title text-center">Nombre Proyecto</h5>
                                     <p className="card-text">Cliente asociado</p>
@@ -50,7 +50,7 @@ export const ListProject = () => {
                             </div>
                         </div>
                         <div className="col w-auto">
-                            <div className="card rounded-4">
+                            <div className="card rounded-4 shadow">
                                 <div className="card-body">
                                     <h5 className="card-title text-center">Nombre Proyecto</h5>
                                     <p className="card-text">Cliente asociado</p>
@@ -62,7 +62,7 @@ export const ListProject = () => {
                             </div>
                         </div>
                         <div className="col w-auto">
-                            <div className="card rounded-4">
+                            <div className="card rounded-4 shadow">
                                 <div className="card-body">
                                     <h5 className="card-title text-center">Nombre Proyecto</h5>
                                     <p className="card-text">Cliente asociado</p>

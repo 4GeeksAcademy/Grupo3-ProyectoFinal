@@ -5,9 +5,9 @@ import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home";
 import { CreateProject } from "./pages/createProject";
+import { EditProject } from "./pages/editProject";
 import { ListProject } from "./pages/listProject";
 import injectContext from "./store/appContext";
-
 
 //create your first component
 const Layout = () => {
@@ -25,8 +25,8 @@ const Layout = () => {
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<CreateProject />} path="/createProject" />
+                        <Route element={<EditProject />} path="/editProject:id" />
                         <Route element={<ListProject />} path="/listProject" />
-                        {/* <Route element={<Single />} path="/single/:theid" /> */}
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     {/* <Footer /> */}

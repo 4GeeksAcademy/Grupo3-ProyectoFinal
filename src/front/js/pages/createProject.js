@@ -7,7 +7,7 @@ export const CreateProject = () => {
     return (
         <>
             <Background>
-                <div className="new-project bg-white rounded-4 p-2 p-md-3 p-lg-4 p-xl-5 position-absolute top-50 start-50 translate-middle">
+                <div className="bg-white shadow-lg rounded-4 p-2 p-md-3 p-lg-4 p-xl-5 position-absolute top-50 start-50 translate-middle">
                     <p className="fs-3 pb-4 text-center">Crea un nuevo proyecto</p>
                     <form>
                         <div className="pb-2">
@@ -36,7 +36,7 @@ export const CreateProject = () => {
                             <input type="date" className="form-control" id="endDate" name="endDate" required />
                         </div>
                         <div className="pt-4 d-flex justify-content-end pe-1">
-                            <button type="submit" className="btn btn-primary">Guardar proyecto</button>
+                            <button type="submit" className="btn btn-custom">Guardar proyecto</button>
                         </div>
                     </form>
                 </div>

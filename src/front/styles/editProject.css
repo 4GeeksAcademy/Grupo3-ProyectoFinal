@@ -1,3 +1,11 @@
+.bg-color {
+    background: #adfaedc9;
+}
+
+.desc-overflow {
+    max-height: 6.5rem;
+}
+
 .btn-custom {
     background-color: #23CFB0;
     border-color: #23CFB0;
