@@ -7,7 +7,7 @@ export const EditProject = () => {
     return (
         <>
             <Background>
-                <div className="bg-white shadow-lg rounded-4 p-2 p-md-3 p-lg-4 p-xl-5 position-absolute top-50 start-50 translate-middle">
+                <div className="bg-white shadow-lg rounded-4 p-4 p-lg-5 position-absolute top-50 start-50 translate-middle">
                     <p className="fs-3 text-center">Detalles del proyecto</p>
                     <div className="row border rounded-4 mb-2 py-2">
                         <div className="col-12 col-md-6">Cliente asociado</div>

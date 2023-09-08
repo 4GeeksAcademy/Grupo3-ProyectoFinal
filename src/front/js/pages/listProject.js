@@ -7,12 +7,12 @@ export const ListProject = () => {
     return (
         <>
             <Background>
-                <div className="position-absolute top-0 start-50 translate-middle-x">
-                    <div className="d-flex justify-content-between align-items-center pt-2 pt-lg-3 pt-xl-4 pt-xxl-5 pb-4">
-                        <p className="fs-1">Proyectos</p>
-                        <button type="button" className="btn btn-custom btn-sm">Agregar</button>
+                <div className="cards position-absolute top-0 start-50 translate-middle-x">
+                    <p className="fs-1 mb-0 ms-1 pt-0 pt-md-2 pt-lg-3">Proyectos</p>
+                    <div className="d-flex justify-content-end">
+                        <button type="button" className="btn btn-custom btn-sm mb-2 mb-md-3 me-2">Agregar</button>
                     </div>
-                    <div className="row row-cols-auto g-4">
+                    <div className="row row-cols-auto g-4 d-flex justify-content-center">
                         <div className="col w-auto">
                             <div className="card rounded-4 shadow">
                                 <div className="card-body">

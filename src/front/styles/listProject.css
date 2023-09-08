@@ -15,3 +15,27 @@
     border-color: #1fa385 !important;
     color: #ffffff !important;
 }
+
+@media (min-width: 576px) {
+    .cards {
+        width: 90%;
+    }
+}
+
+@media (min-width: 768px) {
+    .cards {
+        width: 75%;
+    }
+}
+
+@media (min-width: 992px) {
+    .cards {
+        width: 60%;
+    }
+}
+
+@media (min-width: 1400px) {
+    .cards {
+        width: 50%;
+    }
+}
