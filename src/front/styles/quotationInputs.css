@@ -1,0 +1,50 @@
+.inputs-in-line{
+    width: 90%;
+    padding: 0.5% 0;
+    height: 4.5vh;
+    margin: auto;
+    border-radius: 12px;
+    border: solid;
+    border-width: 2px;
+    border-color: #F1F1F1;
+    margin-bottom: 1%;
+}
+
+.no-border {
+    border: none;
+  }
+
+.inputs-in-line input{
+    text-align: center;
+    height: 3vh;
+}
+
+.small-inputs{
+    width: 20%;
+}
+
+.task-input{
+    width: 125%;
+}
+.inputs-in-line input:focus{
+    outline: none;
+    background-color: rgba(80, 210, 186, 0.31);
+    border-radius: 10px;
+}
+  
+.inputs-in-line input::placeholder{
+    text-align: center;
+    font-size: 14px;
+}
+
+.total-inputs{
+    height: 3vh;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.total-card{
+    width: 23%;
+    border-radius: 15px;
+    padding: 1%;
+}
