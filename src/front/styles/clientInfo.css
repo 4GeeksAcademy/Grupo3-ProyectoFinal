@@ -1,39 +1,10 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+.the-back{
+  background-color: aquamarine;
 }
-
-:root {
-  --purple: hsl(240, 80%, 89%);
-  --pink: hsl(0, 59%, 94%);
-  --light-bg: hsl(204, 37%, 92%);
-  --light-gray-bg: hsl(0, 0%, 94%);
-  --white: hsl(0, 0%, 100%);
-  --dark: hsl(0, 0%, 7%);
-  --text-gray: hsl(0, 0%, 30%);
+.wallpa img {
+  width: 680px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  margin-left: 15px;
 }
-
-body {
-  background: var(--light-bg);
-  font-family: "Space Grotesk", sans-serif;
-  color: var(--dark);
-}
-
-h3 {
-  font-size: 1.5em;
-  font-weight: 700;
-}
-
-p {
-  font-size: 1em;
-  line-height: 1.7;
-  font-weight: 300;
-  color: var(--text-gray);
-}
-
-.description {
-  white-space: wrap;
-}
-
-

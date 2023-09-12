@@ -9,15 +9,29 @@ export const ClientInfo = () => {
 
 	return (
         <div className="container">
-            <div className="box">
-                <div className="box-top">
-                    <img src="https://picsum.photos/150" alt=""/>
-                    <div className="title-flex">
-                        <h3 className="box-title">Kelsie Meyer</h3>
+            <div className="the-back">
+                <div className="wallpa">
+                    <img src="https://i.pinimg.com/originals/58/69/d6/5869d65fce581f894d44dcf2807332ef.jpg" alt=""/>
+                </div>
+                <div className="pic-op">
+                    <div className="row">
+                        <div className="col-6 ">
+                        <img className="position-absolute top-0 start-100 translate-middle" src="https://picsum.photos/150" alt=""/>
+                        </div>
+                        <div className="col-6">
+                            options
+                        </div>
                     </div>
-                    <p className="description">Whipped steamed roast cream beans macchiato skinny grinder café. Iced grinder go mocha steamed grounds cultivar panna aroma.</p>
-                    </div>
-                <a href="#" className="button">Follow Kelsie</a>
+                </div>
+                <div className="nam">
+                    <h1>Kristel Ester Corrales Granados</h1>
+                </div>
+                <div className="com">
+                    <h5>Full Stack Developer</h5>
+                </div>
+                <div className="pho"></div>
+                <div className="bu"></div>
+                <div className="des"></div>
             </div>
         </div>
         );
