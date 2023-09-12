@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home";
-import { Login } from "./pages/Login";
+import Login from "./pages/Login";
 import CreateQuotation from "./pages/CreateQuotation"
 import { CreateProject } from "./pages/createProject";
 import { EditProject } from "./pages/editProject";
