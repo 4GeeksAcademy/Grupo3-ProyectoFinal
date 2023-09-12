@@ -31,6 +31,11 @@ export const Background = (props) => {
                 </div>
                 {props.children}
             </div>
+
+            {
+                props.children
+            }
+
         </div>
 
     );
