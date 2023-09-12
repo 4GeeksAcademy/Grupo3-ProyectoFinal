@@ -7,6 +7,7 @@ import CreateQuotation from "./pages/CreateQuotation"
 import { CreateProject } from "./pages/createProject";
 import { EditProject } from "./pages/editProject";
 import { ListProject } from "./pages/listProject";
+import { Profile } from "./pages/profile";
 import injectContext from "./store/appContext";
 
 //create your first component
@@ -24,6 +25,7 @@ const Layout = () => {
                     {/* <Navbar /> */}
                     <Routes>
                         <Route element={<Home />} path="/" />
+                        <Route element={<Profile />} path="/profile" />
                         <Route element={<CreateQuotation/>} path="/user/client/quotation/create"/>
                         <Route element={<CreateProject />} path="/createProject" />
                         <Route element={<EditProject />} path="/editProject:id" />

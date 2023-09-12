@@ -2,30 +2,41 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(20), unique=True, nullable=False)
-    full_name = db.Column(db.String(50), unique=False, nullable=False)
-    password = db.Column(db.String(20), unique=False, nullable=False)
+    name = db.Column(db.String(50), unique=False, nullable=False)
+    last_name = db.Column(db.String(50), unique=False, nullable=False)
+    password = db.Column(db.String(200), unique=False, nullable=False)
     phone = db.Column(db.String(20), unique=True, nullable=True)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-    country= db.Column(db.String(15), unique=False, nullable=False)
-    about_me= db.Column(db.String(250), unique=False, nullable=False)
-
+    country = db.Column(db.String(15), unique=False, nullable=True)
+    about_me = db.Column(db.String(250), unique=False, nullable=True)
 
     def __repr__(self):
         return f'<User {self.email}>'
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
 
     def serialize(self):
         return {
             "id": self.id,
             "email": self.email,
-            "full_name": self.full_name,
+            "name": self.full_name,
+            "last_name": self.last_name,
             "phone": self.phone,
-            "is_active": self.is_active,
+            "country": self.country,
+            "about_me": self.about_me,
 
             # do not serialize the password, its a security breach
         }
+
 
 class Client(db.Model):
 
@@ -56,19 +67,20 @@ class Client(db.Model):
 
             # do not serialize the password, its a security breach
         }
-    
+
+
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20), unique = False, nullable = False)
-    description = db.Column(db.String(200), unique = False)
-    Date = db.Column(db.Date, unique = False, nullable = False)
-    deadline = db.Column(db.Date, unique = False)
-    hour_price = db.Column(db.Numeric, unique = False, nullable = False)
+    name = db.Column(db.String(20), unique=False, nullable=False)
+    description = db.Column(db.String(200), unique=False)
+    Date = db.Column(db.Date, unique=False, nullable=False)
+    deadline = db.Column(db.Date, unique=False)
+    hour_price = db.Column(db.Numeric, unique=False, nullable=False)
 
-     # relationships (user)
+    # relationships (user)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     user = db.relationship("User")
-     # relationships (client)
+    # relationships (client)
     client_id = db.Column(db.Integer, db.ForeignKey("client.id"))
     client = db.relationship("Client")
 
@@ -84,15 +96,16 @@ class Project(db.Model):
             "client_id": self.client_id
         }
 
+
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20), unique = False, nullable = False)
-    state = db.Column(db.String(20), unique = False)
-    time = db.Column(db.Time, unique = False, nullable = False)
-     # relationships (user)
+    name = db.Column(db.String(20), unique=False, nullable=False)
+    state = db.Column(db.String(20), unique=False)
+    time = db.Column(db.Time, unique=False, nullable=False)
+    # relationships (user)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     user = db.relationship("User")
-     # relationships (project)
+    # relationships (project)
     project_id = db.Column(db.Integer, db.ForeignKey("project.id"))
     project = db.relationship("Project")
 
@@ -106,10 +119,11 @@ class Task(db.Model):
             "client_id": self.client_id
         }
 
+
 class Quotation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    task_name = db.Column(db.String(50), unique = False, nullable = False)
-    estimated_time = db.Column(db.Time, unique = False, nullable = False)
+    task_name = db.Column(db.String(50), unique=False, nullable=False)
+    estimated_time = db.Column(db.Time, unique=False, nullable=False)
     # relationships (user)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     user = db.relationship("User")
