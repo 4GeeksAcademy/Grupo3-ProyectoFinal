@@ -37,7 +37,7 @@ export const ClientList = () => {
 					<div className="fondo">
 						<div className="flex-grow-0">
 							<div className="row">
-								<div className="image-profile col">
+								<div className="image-porfi col">
 									<img src="https://picsum.photos/150" alt=""/>
 								</div>
 								<div className="text-description col">Name, lastName</div>
