@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const Background = () => {
+export const Background = (props) => {
     const [isMenuOpen, setMenuOpen] = useState(false); // Estado para el menú de hamburguesa
 
     return (
@@ -57,6 +57,11 @@ export const Background = () => {
                     <li><Link to="#">Cerrar Sesión</Link></li>
                 </ul>
             </div>
+
+            {
+                props.children
+            }
+
         </div>
     );
 };

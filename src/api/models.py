@@ -108,7 +108,7 @@ class Task(db.Model):
 
 class Quotation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    task_name = db.Column(db.String(20), unique = False, nullable = False)
+    task_name = db.Column(db.String(50), unique = False, nullable = False)
     estimated_time = db.Column(db.Time, unique = False, nullable = False)
     # relationships (user)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))

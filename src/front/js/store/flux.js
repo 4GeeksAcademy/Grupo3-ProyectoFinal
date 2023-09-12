@@ -13,9 +13,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+
+			// quotations: []
 		},
 		actions: {
+			
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
@@ -33,6 +36,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error)
 				}
 			},
+
+			postQuotationData: async (taskArray) => {
+				try {
+				  const response = await fetch(process.env.BACKEND_URL + "/api/user/client/quation/create", {
+					method: 'POST', 
+					headers: {
+					  'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(taskArray) 
+				  });
+			
+				  if (!response.ok) {
+					throw new Error('Error en la petición');
+				  }
+			
+				  const responseData = await response.json(); 
+				  setData(responseData);
+				} catch (error) { 
+				  console.error('Ha habido un error:', error);
+				}
+			  
+		},
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
