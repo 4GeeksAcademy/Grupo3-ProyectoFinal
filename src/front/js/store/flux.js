@@ -1,54 +1,45 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			clients: [],
+			favorites: [],
+			
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-
-			getMessage: async () => {
-				try{
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
-				}
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
+		addFavorites: (fav) => {
+			let store= getStore() 
+			let verify = store.favorites.some((item)=> fav._id == item._id)
+			if (verify) {
+				let newFavorites = store.favorites.filter((item)=> item._id != fav._id)
+				setStore({
+					favorites: newFavorites
+				})
+			} else {
+				setStore({
+					favorites: [...store.favorites, fav]
+				})
 			}
+		},
+		getClients: () => {
+			fetch (`${getStore().urlappi}/client`)
+			.then ((response) => response.json())
+			.then ((data) =>{
+				for(let item of data.results){
+					fetch(item.url)
+					.then((response) => response.json())
+					.then((data)=>{
+						setStore({
+							clients: [...getStore().clients, data.result]
+						});
+					}).catch((error)=>{
+						console.log(error);
+					})
+				}
+			}).catch((error)=>{
+				console.log(error);})
+		},
+	}
 		}
 	};
-};
 
 export default getState;

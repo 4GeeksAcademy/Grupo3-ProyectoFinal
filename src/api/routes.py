@@ -30,40 +30,28 @@ def create_client():
     body = request.get_json(silent=True)
 
     if body is None:
-        return jsonify({
-            "msg": "La petición requiere que envíes un Json"
-        })
-    if "task_name" not in body:
-        return jsonify({
-            "msg": "El campo task_name es requerido"
-        })
-
-    if "estimated_time" not in body:
-        return jsonify({
-            "msg": "El campo estimated_time es requerido"
-        })
-    if "client_id" not in body:
-        return jsonify({
-            "msg": "El campo client_id es requerido"
-        })
+        return jsonify({"msg": "La petición requiere que envíes un Json"})
+    if "full_name" not in body:
+        return jsonify({"msg": "El campo full_name es requerido"})
+    if "email" not in body:
+        return jsonify({"msg": "El campo email es requerido"})
+    if "phone" not in body:
+        return jsonify({"msg": "El campo phone es requerido"})
 
     try:
+        client = Client(full_name=body["full_name"],
+                            email=(body["email"]),
+                            phone=body["phone"],
+                                user_id = "user_id")
 
-        quotation = Quotation(task_name=body["task_name"],
-                            estimated_time=datetime.time(body["estimated_time"]),
-                            client_id=body["client_id"],
-                                user_id = user_id)
-
-        db.session.add(quotation)
+        db.session.add(client)
         db.session.commit()
 
     except Exception as error:
         db.session.rollback()
         return jsonify(error.args), 500 #Hubo un error del lado del servidor
 
-    return jsonify({
-        "msg": "Se ha creado la cotización"
-    })
+    return jsonify({"msg": "Se ha creado el cliente"})
 
 @api.route('/user/clients', methods=['PUT'])
 def modify_clients():
