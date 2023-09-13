@@ -81,6 +81,47 @@ def serve_any_other_file(path):
     return response
 
 
+@app.route('/signup', methods=['POST'])
+def add_user():
+    request_body = request.get_json(force=True)
+
+    if "name" not in request_body:
+        raise APIException('The first name is required', 400)
+
+    if "last_name" not in request_body:
+        raise APIException('The last name is required', 400)
+
+    if "email" not in request_body:
+        raise APIException("The email is required", 400)
+
+    if "password" not in request_body:
+        raise APIException('The password is required', 400)
+
+    exists_email = User.query.filter_by(email=request_body['email']).first()
+
+    if exists_email:
+        raise APIException('Email is in use', 400)
+
+    pw_hash = bcrypt.generate_password_hash(
+        request_body['password']).decode('utf-8')
+
+    user = User(
+        name=request_body['name'],
+        last_name=request_body['last_name'],
+        email=request_body['email'],
+        password=pw_hash
+    )
+
+    user.save()
+
+    response_body = {
+        "msg": "ok",
+        "msg2": "Usuario creado correctamente"
+    }
+
+    return jsonify(response_body), 201
+
+
 @app.route('/login', methods=['POST'])
 def login():
     request_body = request.get_json(force=True)
