@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home";
+import Register from "./pages/Register";
 import Login from "./pages/Login";
 import CreateQuotation from "./pages/CreateQuotation"
 import { CreateProject } from "./pages/createProject";
@@ -25,6 +26,7 @@ const Layout = () => {
                     {/* <Navbar /> */}
                     <Routes>
                         <Route element={<Home />} path="/" />
+                        <Route element={<Register />} path="/register" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<CreateQuotation/>} path="/user/client/quotation/create"/>
                         <Route element={<CreateProject />} path="/createProject" />
