@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			URLApi: 'https://upgraded-palm-tree-4xqj764vr44h74v7-3001.app.github.dev/',
 			clients: [],
 			favorites: [],
 			
@@ -21,7 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			}
 		},
 		getClients: () => {
-			fetch (`${getStore().urlappi}/client`)
+			fetch (`${getStore().URLApi}/client`)
 			.then ((response) => response.json())
 			.then ((data) =>{
 				for(let item of data.results){

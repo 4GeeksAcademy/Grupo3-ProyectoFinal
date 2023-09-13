@@ -23,35 +23,30 @@ def handle_hello():
 def get_clients():
     clients = Client.query.all()
     serialized_clients= list(map(lambda x: x.serialize(), clients))
+    # single_client=Client.query.get(body['id'])
+    # single_client.name= body['name']
+    db.session.commit()
     return jsonify({"msg": "Completado", "clients": serialized_clients}), 200
 
 @api.route('/user/clients', methods=['POST'])
-def create_client():
+def post_client():
     body = request.get_json(silent=True)
-
     if body is None:
-        return jsonify({"msg": "La petición requiere que envíes un Json"})
+        raise APIException("Debes enviar información en el body", status_code=400)
     if "full_name" not in body:
-        return jsonify({"msg": "El campo full_name es requerido"})
+        raise APIException("Debes enviar el nombre completo del cliente", status_code=400)
     if "email" not in body:
-        return jsonify({"msg": "El campo email es requerido"})
+        raise APIException("Debes enviar el correo electrónico del cliente", status_code=400)
     if "phone" not in body:
-        return jsonify({"msg": "El campo phone es requerido"})
-
-    try:
-        client = Client(full_name=body["full_name"],
-                            email=(body["email"]),
-                            phone=body["phone"],
-                                user_id = "user_id")
-
-        db.session.add(client)
-        db.session.commit()
-
-    except Exception as error:
-        db.session.rollback()
-        return jsonify(error.args), 500 #Hubo un error del lado del servidor
-
-    return jsonify({"msg": "Se ha creado el cliente"})
+        raise APIException("Debes enviar el número de teléfono del cliente", status_code=400)
+    if "address" not in body:
+        raise APIException("Debes enviar la dirección del cliente", status_code=400)
+    if "company_name" not in body:
+        raise APIException("Debes enviar el nombre de la empresa del cliente", status_code=400)
+    new_client = Client(full_name = body['full_name'], email = body['email'], phone = body['phone'], address = body['address'], company_name = body['company_name'], is_active = True)
+    db.session.add(new_client)
+    db.session.commit()
+    return jsonify({"msg": "Se ha creado el cliente", "new_client_info": new_client.serialize()})
 
 @api.route('/user/clients', methods=['PUT'])
 def modify_clients():
@@ -67,3 +62,11 @@ def modify_clients():
     if "company_name" not in body:
         raise APIException("Debes enviar el nombre de la empresa del cliente a modificar", status_code=400)
     return jsonify({"msg": 'Completed'})
+
+@api.route('user/clients', methods=['DELETE'])
+def delete_clients(client_id):
+    single_client=Client.query.get(client_id)
+    if single_client is None:
+        raise APIException("El cliente no existe", status_code=400)
+    db.session.delete(single_client)
+    db.session.commit()
