@@ -4,11 +4,15 @@ import "../../styles/clientList.css";
 import { Background } from "../component/background";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { faRegular } from '@fortawesome/free-solid-svg-icons'
+import { faImage } from '@fortawesome/free-solid-svg-icons'
+import { faInfo } from '@fortawesome/free-solid-svg-icons'
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { faSquareMinus } from '@fortawesome/free-solid-svg-icons'
 import { Context } from "../store/appContext";
 
 export const ClientList = () => {
 	const { store, actions } = useContext(Context);
+	actions.getClients()
 
 	return (
 		
@@ -27,8 +31,9 @@ export const ClientList = () => {
 						<div className="row">
 							<div className="col"><strong>Clientes</strong></div>
 							<div className="col">
-								<form class="d-flex">
-									<input class="form-control me-2 rounded"  placeholder="Search" aria-label="Search"></input>
+								<form onsubmit="event.preventDefault();" role="search">
+									<input id="search" type="search" placeholder="Search..." autofocus required />
+									<button type="submit">Go</button>    
 								</form>
 							</div>
 						</div>
@@ -36,16 +41,28 @@ export const ClientList = () => {
 
 					<div className="fondo">
 						<div className="flex-grow-0">
-							<div className="row">
-								<div className="image-porfi col">
-									<img src="https://picsum.photos/150" alt=""/>
-								</div>
-								<div className="text-description col">Name, lastName</div>
-								<div className="text-description col">Email</div>
-								<div className="text-description col">
-									<Link  to={`/clientInfo`} className="btn"> <FontAwesomeIcon icon={faPlus} className="add-icon" />	</Link>
-								</div>
-							</div>
+						<div className="flex-grow-0">
+							<table className="table">
+								<thead>
+									<tr>
+									<th scope="col"><FontAwesomeIcon icon={faImage} className="add-icon" /></th>
+									<th scope="col">Nombre</th>
+									</tr>
+								</thead>
+								<tbody>
+									{store.clients.length == 0 ? "Cargando": store.clients.map((item, index)=>{
+										return (
+										<tr>
+											<th className="image-porfi" scope="row"><img src="https://picsum.photos/150" alt=""/></th>
+											<td>{item.full_name}</td>
+											<td>
+											<button><FontAwesomeIcon icon={faSquareMinus} className="add-icon" /></button><Link  to={`/clientInfo`} className=" d-flex justify-content-end "> <FontAwesomeIcon icon={faInfo} className="add-icon" /></Link>
+											</td>
+										</tr>)
+									})}
+								</tbody>
+							</table>
+						</div>
 						</div>
 					</div>
 				</div>

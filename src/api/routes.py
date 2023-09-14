@@ -23,10 +23,16 @@ def handle_hello():
 def get_clients():
     clients = Client.query.all()
     serialized_clients= list(map(lambda x: x.serialize(), clients))
-    # single_client=Client.query.get(body['id'])
-    # single_client.name= body['name']
     db.session.commit()
     return jsonify({"msg": "Completado", "clients": serialized_clients}), 200
+
+@api.route('/user/clients/<int:clients_id>', methods = ['GET'])
+def get_client_id(clients_id):
+    single_client = Client.query.get(clients_id)
+    if single_client is None:
+        raise APIException("El usuario con el id no existe")
+    client_serialized = single_client.serialize()
+    return jsonify({"msg": "Completado", "full_name": client_serialized['full_name']}), 200
 
 @api.route('/user/clients', methods=['POST'])
 def post_client():

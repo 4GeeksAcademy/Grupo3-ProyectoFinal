@@ -60,6 +60,19 @@ p {
 	top: 30px;
 	left: 30px;
 }
+.card-container .proi {
+	color: #231E39;
+	background-color: #23cfb06b;
+	border-radius: 3px;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 3px 7px;
+	position: absolute;
+	top: 30px;
+	left: 30px;
+	display: inline-block;
+	margin-left: 375px;
+}
 
 .card-container .round {
 	border: 1px solid #03BFCB;
@@ -72,7 +85,6 @@ button.primary {
 	border: 1px solid #03BFCB;
 	border-radius: 3px;
 	color: #231E39;
-	font-family: Montserrat, sans-serif;
 	font-weight: 500;
 	padding: 10px 25px;
 }
@@ -96,7 +108,7 @@ button.primary.ghost {
 }
 
 .skills ul li {
-	border: 1px solid #2D2747;
+	border: 1px solid #1f4b4b;
 	border-radius: 2px;
 	display: inline-block;
 	font-size: 12px;

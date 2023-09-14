@@ -39,6 +39,9 @@ export const AddClient = () => {
 							<option>Venezuela</option>
 							<option>Otro</option>      
 						</select>
+						<div className="grid">
+							<input type="text" placeholder="Nombre de empresa" ></input>
+						</div>
 						<div className="grid grid-2">
 							<input type="text" placeholder="Nombre" required></input>
 							<input type="text" placeholder="Correo electrónico" required></input>

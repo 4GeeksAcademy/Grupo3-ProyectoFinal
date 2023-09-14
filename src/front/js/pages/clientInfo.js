@@ -6,23 +6,26 @@ import "../../styles/clientInfo.css";
 
 export const ClientInfo = () => {
 	const { store, actions } = useContext(Context);
-    let params = useParams();
-    let findPeople = ()=>{
-        let person = store.clients.find((item)=> item._id == params.id)
-        setDetail(person)
-       }
+    actions.getClients
+    // let params = useParams();
+    // let findPeople = ()=>{
+    //     let person = store.clients.find((item)=> item._id == params.id)
+    //     setDetail(person)
+    //    }
        
-       useEffect(()=>{findPeople()},[store.clients])
+    //    useEffect(()=>{findPeople()},[store.clients])
 
 	return (
             <>
-            <div className="fo">
+            {store.clients.length == 0 ? "Cargando": store.clients.map((item, index)=>{ 
+                <div className="fo">
                 <div className="card-container">
                     <Link  to={`/clientList`} className="pro">Cancelar</Link>
+                    <Link  to={`/editClient`} className="proi">Editar</Link>
                     <img className="round" src="https://picsum.photos/150" alt=""/>
-                    <h3>{detail?.properties?.full_name}</h3>
-                    <h6>{detail?.properties?.country}</h6>
-                    <p>{detail?.properties?.description}</p>
+                    <h3>{item.full_name}</h3>
+                    <h6>{item.company_name}</h6>
+                    <p>{item.description}</p>
                     <div className="buttons">
                         <button className="primary">
                             Añadir Proyecto
@@ -34,13 +37,16 @@ export const ClientInfo = () => {
                     <div className="skills">
                         <h6>Información de cliente</h6>
                         <ul>
-                            <li>{detail?.properties?.address}</li>
-                            <li>{detail?.properties?.phone}</li>
-                            <li>{detail?.properties?.email}</li>
+                            <li>{item.address}</li>
+                            <li>{item.country}</li>
+                            <li>{item.phone}</li>
+                            <li>{item.email}</li>
                         </ul>
                     </div>
                 </div>
             </div>
+            })}
+            
 
             
             </>
