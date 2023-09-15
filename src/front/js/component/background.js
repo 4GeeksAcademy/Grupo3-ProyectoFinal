@@ -19,12 +19,12 @@ export const Background = (props) => {
                                 </div>
                                 <div className="mx-auto">
                                     <Link className="nav-link text-white" to="/listProject"><i className="fa-solid fa-folder-tree icon-link"></i> Proyectos</Link>
-                                    <Link className="nav-link text-white" to="#"><i className="fa-solid fa-user-group icon-link"></i> Clientes</Link>
-                                    <Link className="nav-link text-white" to="#"><i className="fa-solid fa-hand-holding-dollar icon-link"></i> Cotizaciones</Link>
+                                    <Link className="nav-link text-white" to=""><i className="fa-solid fa-user-group icon-link"></i> Clientes</Link>
+                                    <Link className="nav-link text-white" to="/quotation/list"><i className="fa-solid fa-hand-holding-dollar icon-link"></i> Cotizaciones</Link>
                                 </div>
                                 <div className="mt-auto pb-5 pb-lg-0 mx-auto">
-                                    <Link className="nav-link text-white" to="#"><i className="fa-solid fa-gear icon-link"></i> Configuración</Link>
-                                    <Link className="nav-link text-white" to="#"><i className="fa-solid fa-right-from-bracket icon-link"></i> Cerrar Sesión</Link>
+                                    <Link className="nav-link text-white" to=""><i className="fa-solid fa-gear icon-link"></i> Configuración</Link>
+                                    <Link className="nav-link text-white" to=""><i className="fa-solid fa-right-from-bracket icon-link"></i> Cerrar Sesión</Link>
                                 </div>
                             </nav>
                         </div>
@@ -32,6 +32,7 @@ export const Background = (props) => {
                 </div>
                 {props.children}
             </div>
+
         </div>
 
     );
