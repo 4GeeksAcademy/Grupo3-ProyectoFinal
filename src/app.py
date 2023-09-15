@@ -165,7 +165,6 @@ def login():
         "phone": user.phone,
         "about_me": user.about_me,
     }
-
     return jsonify(response_body), 200
 
 

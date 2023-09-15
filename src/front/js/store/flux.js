@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				email: null,
 				password: null
 			},
+			current_user: {},
 			demo: [
 				{
 					title: "FIRST",
@@ -108,7 +109,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error + " Error loading message from backend")
 					setStore({ isloged: false })
 				}
-
 			},
 
 			// Use getActions to call a function within a fuction
