@@ -13,7 +13,7 @@ from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token, JWTManager
 from flask_bcrypt import Bcrypt
-
+from flask_mail import Mail, Message
 
 # from models import Person
 
@@ -22,6 +22,17 @@ static_file_dir = os.path.join(os.path.dirname(
     os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+
+app.config.update(dict(
+    DEBUG=False,
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=587,
+    MAIL_USE_TLS=True,
+    MAIL_USE_SSL=False,
+    MAIL_USERNAME='ruizcaro72@gmail.com',
+    MAIL_PASSWORD='rllqmpuamdejrbtc',
+))
+mail = Mail(app)
 
 bcrypt = Bcrypt(app)
 
@@ -147,9 +158,35 @@ def login():
     response_body = {
         "msg": "ok",
         "token": access_token,
-        "user_id": user.id}
+        "user_id": user.id,
+        "name": user.name,
+        "last_name": user.last_name,
+        "email": user.email,
+        "phone": user.phone,
+        "about_me": user.about_me,
+    }
 
     return jsonify(response_body), 200
+
+
+@app.route('/reset_password_request', methods=['POST'])
+def reset_password_request():
+    email = request.json.get('email')
+    user = User.query.filter_by(email=email).first()
+
+    if user:
+        reset_token = create_access_token(identity=user.id)
+        user.reset_token = reset_token
+        db.session.commit()
+        msg = Message(subject='Restablecimiento de Contraseña',
+                      sender='ruizcaro72@gmail.com', recipients=[email])
+        reset_link = f'https://cautious-space-barnacle-p4rwxgvj6gwf7rq9-3000.app.github.dev/update-password/?token={reset_token}'
+        msg.body = f'Haga clic en el siguiente enlace para restablecer su contraseña: {reset_link}'
+        mail.send(msg)
+
+        return jsonify({"message": "Se ha enviado un correo con instrucciones para restablecer la contraseña"}), 200
+    else:
+        return jsonify({"message": "No se encontró ninguna cuenta asociada a ese correo"}), 404
 
 
 #
