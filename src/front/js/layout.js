@@ -25,7 +25,7 @@ const Layout = () => {
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<CreateProject />} path="/createProject" />
-                        <Route element={<EditProject />} path="/editProject:id" />
+                        <Route element={<EditProject />} path="/editProject/:id" />
                         <Route element={<ListProject />} path="/listProject" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>

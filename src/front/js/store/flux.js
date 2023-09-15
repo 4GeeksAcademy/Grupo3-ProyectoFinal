@@ -1,51 +1,129 @@
+import Swal from 'sweetalert2';
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			projectData: {
+				client: "",
+				projectName: "",
+				projectDescription: "",
+				startDate: "",
+				endDate: "",
+				hourPrice: ""
+			},
+			projects: []
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			getProjects: () => {
+				const requestOptions = {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
+						// Authorization: "Bearer " + getStore().token
+					}
+				};
+				fetch(process.env.BACKEND_URL + "api/user/projects", requestOptions)
+					.then(response => response.json())
+					.then(data => setStore({ projects: data["projects"] }))
+					.catch(error => console.log("Error al obtener proyectos:", error));
 			},
-
-			getMessage: async () => {
-				try{
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
+			getProjectById: async (id) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + `api/user/projects/${id}`);
+					const data = await response.json();
+					if (data.project) {
+						setStore({ projectData: data.project });
+					}
+				} catch (error) {
+					console.log("Error al obtener proyecto:", error);
 				}
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+			postProjectRegister: async (client, projectName, projectDescription, startDate, endDate, hourPrice) => {
+				const requestOptions = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						client_id: client,
+						name: projectName,
+						description: projectDescription,
+						Date: startDate,
+						deadline: endDate,
+						hour_price: hourPrice
+					})
+				};
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "api/user/createProject", requestOptions)
+					const data = await response.json();
+					if (data.msg === 'Se ha creado el proyecto con éxito') {
+						Swal.fire("Éxito", data.msg, "success");
+					} else {
+						Swal.fire("Error", data.msg, "error");
+					}
+				} catch (error) {
+					Swal.fire("Error", "Ocurrió un error al crear el proyecto", "error");
+				}
+			},
+			deleteProject: async (projectId) => {
+				Swal.fire({
+					title: '¿Estás seguro?',
+					text: "Una vez eliminado, no podrás recuperar este proyecto!",
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Sí, eliminar!'
+				}).then(async (result) => {
+					if (result.isConfirmed) {
+						try {
+							const response = await fetch(process.env.BACKEND_URL + `api/user/projects/${projectId}`, {
+								method: 'DELETE',
+							});
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
+							if (response.ok) {
+								Swal.fire("Eliminado", "El proyecto ha sido eliminado", "success").then(() => {
+									getActions().getProjects();
+								});
+							} else {
+								Swal.fire("Error", "Ocurrió un error al eliminar el proyecto", "error");
+							}
+						} catch (error) {
+							Swal.fire("Error", "Ocurrió un error al eliminar el proyecto", "error");
+						}
+					} else {
+						Swal.fire("Cancelado", "El proyecto está a salvo!", "info");
+					}
 				});
+			},
+			updateProject: async (id, projectDetails) => {
+				const requestOptions = {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(projectDetails)
+				};
 
-				//reset the global store
-				setStore({ demo: demo });
+				try {
+					const response = await fetch(process.env.BACKEND_URL + `api/user/projects/${id}`, requestOptions);
+					const data = await response.json();
+					if (response.status === 200) {
+						console.log(data.msg);
+						getActions().getProjectById(id);
+					} else {
+						console.log(data.msg);
+					}
+				} catch (error) {
+					console.log("Error al editar el proyecto:", error);
+				}
+			},
+			updateProjectData: (updatedData) => {
+				const currentData = getStore().projectData;
+				setStore({
+					projectData: {
+						...currentData,
+						...updatedData
+					}
+				});
 			}
 		}
 	};
