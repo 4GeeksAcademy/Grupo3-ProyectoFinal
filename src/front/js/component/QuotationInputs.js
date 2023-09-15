@@ -2,25 +2,26 @@ import React,{useState, useEffect} from 'react'
 
 const QuotationInputs = (props) => {
   const [taskName,setTaskName] = useState("");
-  const [hours,setHours] = useState("");
-  const [price,setPrice] = useState("");
+  const [hours,setHours] = useState(0);
+  const [price,setPrice] = useState(0);
 
   const onInputChange = props.onInputChange;
   useEffect(() => {
     if (onInputChange) {
-      onInputChange({ task_name: taskName,  estimated_time: hours, task_price: price});
+      onInputChange({ name: taskName, time: hours, task_price: price});
     }
   }, [taskName, hours]);
 
   const handleChange = (e) => {
-    let newHours = e.target.value;
+    let newHours = 0;
+    newHours = e.target.value;
     setHours(newHours)
-    let result = props.hourPrice * newHours; 
+    console.log(hours);
+    let result = 0;
+    result = props.hourPrice * newHours; 
     setPrice(result);
 
   }
-
-
 
   return (
     <div className='inputs-in-line d-sm-flex d-md-flex d-lg-flex justify-content-around'>
