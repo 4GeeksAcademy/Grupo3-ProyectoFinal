@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react'
-
+import "../../styles/quotationInputs.css";
 const QuotationInputs = (props) => {
   const [taskName,setTaskName] = useState("");
   const [hours,setHours] = useState(0);
