@@ -6,13 +6,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faImage } from '@fortawesome/free-solid-svg-icons'
 import { faInfo } from '@fortawesome/free-solid-svg-icons'
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
-import { faSquareMinus } from '@fortawesome/free-solid-svg-icons'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { Context } from "../store/appContext";
 
 export const ClientList = () => {
 	const { store, actions } = useContext(Context);
 	actions.getClients()
+	const deleteThem = (client_id) => {
+		actions.deleteClients(client_id);
+	};
+	// useEffect(()=>{getClients()}, [])
 
 	return (
 		
@@ -53,7 +56,7 @@ export const ClientList = () => {
 											<th className="image-porfi" scope="row"><img src="https://picsum.photos/150" alt=""/></th>
 											<td>{item.full_name}</td>
 											<td>
-											<button><FontAwesomeIcon icon={faSquareMinus} className="add-icon" /></button><Link  to={`/clientInfo`} className=" d-flex justify-content-end "> <FontAwesomeIcon icon={faInfo} className="add-icon" /></Link>
+											<button className="btnClose" onClick={() => deleteThem('client_id')}><FontAwesomeIcon icon={faTrashCan} className="add-icon" /></button><Link  to={`/clientInfo`} className=" d-flex justify-content-end "> <FontAwesomeIcon icon={faInfo} className="add-icon" /></Link>
 											</td>
 										</tr>)
 									})}

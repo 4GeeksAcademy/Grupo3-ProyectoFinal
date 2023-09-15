@@ -1,24 +1,23 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
-import "../../styles/addClient.css";
+import "../../styles/editInfo.css";
 
-export const AddClient = () => {
+export const EditInfo = () => {
 	const { store, actions } = useContext(Context);
-	const [saveClient, setSaveClient] = useState()
 
 	return (
 		<form className="my-form">
 			<div className="container">
-				<h1 className="fw-bold tx-white">Nuevo Cliente</h1>
+				<h1 className="fw-bold tx-white">Editar Cliente</h1>
 				<div className="baki">
 					<div className="image-profile">
 						<img src="https://picsum.photos/150" alt=""/>
 					</div>
 					<div className="backe">
 						<select>
-							<option value disabled>-- Elige un país --</option>
+							<option selected disabled>-- Elige un país --</option>
 							<option>Argentina</option>			
 							<option>Bolivia</option>
 							<option>Chile</option>
@@ -58,7 +57,7 @@ export const AddClient = () => {
 									<span className="front">Guardar</span>
 								</button>
 								<button className="btn-grid" type="reset">
-                                    <Link  to={`/clientList`} className="n">Cancelar</Link>
+                                    <Link  to={`/clientInfo`} className="n">Cancelar</Link>
 								</button> 
 						</div>
 					</div>

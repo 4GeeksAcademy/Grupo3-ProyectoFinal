@@ -15,15 +15,15 @@ export const ClientInfo = () => {
                 <div className="fo">
                 <div className="card-container">
                     <Link  to={`/clientList`} className="pro">Cancelar</Link>
-                    <Link  to={`/editClient`} className="proi">Editar</Link>
+                    <Link  to={`/editInfo`} className="proi">Editar</Link>
                     <div>
-                    {/* {store.clients.length == 0 ? "Cargando...": store.clients.map((item, index)=>{
+                     {/* {store.clients.length == 0 ? "Cargando...": store.clients.map((item, index)=>{
                         return ()
-                    })} */}
+                    })}  */}
                         <img className="round" src="https://picsum.photos/150" alt=""/>
-                        <h3>{item.full_name}</h3>
+                        {/* <h3>{item.full_name}</h3>
                         <h6>{item.company_name}</h6>
-                        <p>{item.description}</p>
+                        <p>{item.description}</p> */}
                         <div className="buttons">
                             <button className="primary">
                                 Añadir Proyecto
@@ -35,10 +35,10 @@ export const ClientInfo = () => {
                         <div className="skills">
                             <h6>Información de cliente</h6>
                             <ul>
-                                <li>{item.address}</li>
+                                {/* <li>{item.address}</li>
                                 <li>{item.country}</li>
                                 <li>{item.phone}</li>
-                                <li>{item.email}</li>
+                                <li>{item.email}</li> */}
                             </ul>
                         </div>
                     </div>
