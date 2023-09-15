@@ -134,3 +134,4 @@ class Task(db.Model):
             "name": self.name,
             "time": self.time,
             "user_id": self.user_id,
+        }
