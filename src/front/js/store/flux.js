@@ -16,6 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				email: null,
 				password: null
 			},
+			current_user: {},
 			projectData: {
 				client: "",
 				projectName: "",
@@ -107,7 +108,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error + " Error loading message from backend")
 					setStore({ isloged: false })
 				}
-
 			},
 
 			getQuotations:  async () => {

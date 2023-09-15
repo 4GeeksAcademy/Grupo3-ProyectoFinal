@@ -9,7 +9,7 @@ const Login = () => {
     const handleChangeLogin = (e) => {
         actions.handleChange(e, "login")
     }
-    //store.isloged ? navigate('/login') : navigate('/registroUsuario')
+    store.isloged ? navigate('/profile') : null
     return (
         <div
             className=" RegistroUsuarioDiv container d-flex justify-content-center align-items-center"
@@ -26,8 +26,8 @@ const Login = () => {
                     <input
                         name="email"
                         type="email"
-                        className="form-control"
-                        id="exampleInputPassword1"
+                        class="form-control"
+                        id="miId"
                         placeholder="Ingrese su correo"
                         onChange={handleChangeLogin}
                     />
@@ -49,6 +49,9 @@ const Login = () => {
                 <button type="submit" className="btn btn-primary">
                     Iniciar Sesión
                 </button>
+                <div className="text-center mt-4">
+                    <Link to="/reset_password_request" className="btn btn-primary">Olvidó su contraseña?</Link>
+                </div>
             </form>
         </div>
     );

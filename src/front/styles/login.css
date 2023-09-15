@@ -9,11 +9,11 @@
     margin-bottom: 8rem;
 }
 
-.form-control {
+#miId{
     width: 20rem;
 }
 
-.btn {
+.btn.btn-primary {
     width: 20rem;
     background-color: #008080;
     /* Turquesa verde oscuro */
