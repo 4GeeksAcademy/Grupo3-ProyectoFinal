@@ -1,0 +1,25 @@
+body {
+    background: #E5FFFA;
+    font-family: 'Roboto', sans-serif;
+}
+
+.background {
+    background: #EDF4F2;
+}
+
+.sidebar {
+    background: #23CFB0;
+    left: -5rem;
+    bottom: 3rem;
+}
+
+.user-photo {
+    width: 100px;
+    height: 100px;
+}
+
+@media (max-width: 1200px) {
+    .sidebar {
+        left: -4rem;
+    }
+}
