@@ -121,7 +121,6 @@ class Task(db.Model):
     name = db.Column(db.String(80), unique = False, nullable = False)
     time = db.Column(db.Time, unique = False, nullable = False)
      # relationships (user)
-      
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     user = db.relationship("User")
 
