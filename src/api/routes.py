@@ -61,7 +61,7 @@ def create_quotation():
     })
 
 
-@api.route('/user/projects', methods=['GET'])
+@api.route('projects', methods=['GET'])
 def get_projects():
     try:
         projects = Project.query.all()
@@ -78,7 +78,7 @@ def get_projects():
     return jsonify(response), 200
 
 
-@api.route('/user/projects/<int:project_id>', methods=['GET'])
+@api.route('/project/<int:project_id>', methods=['GET'])
 def get_project_details(project_id):
     try:
         project = Project.query.get(project_id)
@@ -89,7 +89,7 @@ def get_project_details(project_id):
         return jsonify({"msg": f"Error al recuperar el proyecto: {error}"}), 500
 
 
-@api.route('/user/createProject', methods=['POST'])
+@api.route('/project/create', methods=['POST'])
 def create_project():
     body = request.get_json(silent=True)
 
@@ -125,7 +125,7 @@ def create_project():
         return jsonify(error.args), 500
 
 
-@api.route('/user/projects/<int:project_id>', methods=['DELETE'])
+@api.route('/project/<int:project_id>', methods=['DELETE'])
 def delete_project(project_id):
     try:
         project = Project.query.get(project_id)
@@ -143,7 +143,7 @@ def delete_project(project_id):
     return jsonify({"msg": "Proyecto eliminado con éxito"}), 200
 
 
-@api.route('/user/projects/<int:project_id>', methods=['PUT'])
+@api.route('/project/<int:project_id>', methods=['PUT'])
 def edit_project(project_id):
     body = request.get_json(silent=True)
 

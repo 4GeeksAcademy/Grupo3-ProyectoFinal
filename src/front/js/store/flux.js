@@ -22,14 +22,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 						// Authorization: "Bearer " + getStore().token
 					}
 				};
-				fetch(process.env.BACKEND_URL + "api/user/projects", requestOptions)
+				fetch(process.env.BACKEND_URL + "api/projects", requestOptions)
 					.then(response => response.json())
 					.then(data => setStore({ projects: data["projects"] }))
 					.catch(error => console.log("Error al obtener proyectos:", error));
 			},
 			getProjectById: async (id) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL + `api/user/projects/${id}`);
+					const response = await fetch(process.env.BACKEND_URL + `api/project/${id}`);
 					const data = await response.json();
 					if (data.project) {
 						setStore({ projectData: data.project });
@@ -52,7 +52,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				};
 				try {
-					const response = await fetch(process.env.BACKEND_URL + "api/user/createProject", requestOptions)
+					const response = await fetch(process.env.BACKEND_URL + "api/project/create", requestOptions)
 					const data = await response.json();
 					if (data.msg === 'Se ha creado el proyecto con éxito') {
 						Swal.fire("Éxito", data.msg, "success");
@@ -75,7 +75,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}).then(async (result) => {
 					if (result.isConfirmed) {
 						try {
-							const response = await fetch(process.env.BACKEND_URL + `api/user/projects/${projectId}`, {
+							const response = await fetch(process.env.BACKEND_URL + `api/project/${projectId}`, {
 								method: 'DELETE',
 							});
 
@@ -104,7 +104,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				try {
-					const response = await fetch(process.env.BACKEND_URL + `api/user/projects/${id}`, requestOptions);
+					const response = await fetch(process.env.BACKEND_URL + `api/project/${id}`, requestOptions);
 					const data = await response.json();
 					if (response.status === 200) {
 						console.log(data.msg);
