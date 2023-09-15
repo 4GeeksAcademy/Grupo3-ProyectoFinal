@@ -11,8 +11,8 @@ export const Background = (props) => {
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse h-100" id="navbarToggler">
-                            {/* <nav className="nav flex-column h-100"> */}
-                            <nav className="flex-column h-100">
+                            <nav className="nav flex-column h-100">
+                            {/* <nav className="flex-column h-100"> */}
                                 <div className="d-flex flex-column align-items-center">
                                     <img src="https://picsum.photos/200" alt="Nombre del Usuario" className="user-photo rounded-circle" />
                                     <p className="fw-bold text-center text-white pt-2 pb-4">Nombre del Usuario</p>
