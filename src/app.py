@@ -189,6 +189,23 @@ def reset_password_request():
         return jsonify({"message": "No se encontró ninguna cuenta asociada a ese correo"}), 404
 
 
+@app.route('/update_password/<token>', methods=['POST'])
+@jwt_required()
+def update_password(token):
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+
+    if user.reset_token == token:
+        new_password = request.json.get('password')
+        pw_hash = bcrypt.generate_password_hash(new_password).decode('utf-8')
+        user.password = pw_hash
+        user.reset_token = None
+        db.session.commit()
+        return jsonify({"message": "la contraseña se actualizo correctamente"}), 200
+    else:
+        return jsonify({"message": "Token invalido o vencido"}), 401
+
+
 #
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':

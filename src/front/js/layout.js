@@ -8,6 +8,7 @@ import {ListQuotations} from "./pages/ListQuotations";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ResetPasswordRequest from "./pages/ResetPasswordRequest";
+import ResetPasswordToken from "./pages/ResetPasswordToken";
 import { CreateProject } from "./pages/createProject";
 import { EditProject } from "./pages/editProject";
 import { ListProject } from "./pages/listProject";
@@ -33,6 +34,7 @@ const Layout = () => {
                         <Route element={<Register />} path="/register" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<ResetPasswordRequest />} path="/reset_password_request" />
+                        <Route element={<ResetPasswordToken />} path="/update-password" />
                         <Route element={<CreateQuotation/>} path="/user/client/quotation/create"/>
                         <Route element={<CreateProject />} path="/createProject" />
                         <Route element={<EditProject />} path="/editProject:id" />
