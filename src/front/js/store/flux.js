@@ -214,6 +214,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			updatePassword: async (data, token) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/update_password/' + token, {
+						method: 'POST',
+						body: JSON.stringify(data),
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': `Bearer ${token}`
+						},
+					});
+
+					if (response.ok) {
+						return true;
+					} else {
+						const result = await response.json();
+						alert(result.message);
+					}
+				} catch (error) {
+					console.error(error + ' Error requesting password reset');
+					return false;
+				}
+			},
+
 			handleChange: (e, type) => {
 				const store = getStore()
 				if (type == "login") {
