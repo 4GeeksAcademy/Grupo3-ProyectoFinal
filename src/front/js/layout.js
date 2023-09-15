@@ -7,7 +7,6 @@ import CreateQuotation from "./pages/CreateQuotation";
 import {ListQuotations} from "./pages/ListQuotations";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import CreateQuotation from "./pages/CreateQuotation"
 import { CreateProject } from "./pages/createProject";
 import { EditProject } from "./pages/editProject";
 import { ListProject } from "./pages/listProject";
