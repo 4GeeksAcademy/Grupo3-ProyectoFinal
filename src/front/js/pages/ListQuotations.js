@@ -4,9 +4,14 @@ import Background from "../component/background";
 import QuotationCard from "../component/QuotationCard";
 import { Context } from "../store/appContext";
 import Freelancer from "../../img/Freelancer.png";
-
+import "../../styles/listQuotation.css";
 
 export const ListQuotations = () => {
+
+    useEffect(() => {
+        state.actions.getQuotations();
+    }, []);
+
     const { store, actions } = useContext(Context);
     console.log("Aqui");
     console.log(store.quotations);

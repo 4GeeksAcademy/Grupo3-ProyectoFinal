@@ -19,21 +19,21 @@ const Login = () => {
         >
             <form noValidate onSubmit={e => { e.preventDefault(); actions.logInUser() }}>
                 <h2 className="tituloRegistro mb-4">Iniciar Sesión</h2>
-                <div class="mb-3">
+                <div className="mb-3">
                     <label for="exampleInputPassword1" class="form-label">
                         Correo
                     </label>
                     <input
                         name="email"
                         type="email"
-                        class="form-control"
+                        className="form-control"
                         id="exampleInputPassword1"
                         placeholder="Ingrese su correo"
                         onChange={handleChangeLogin}
                     />
                 </div>
 
-                <div class="mb-4">
+                <div className="mb-4">
                     <label for="exampleInputPassword1" class="form-label">
                         Contraseña
                     </label>
@@ -46,7 +46,7 @@ const Login = () => {
                         onChange={handleChangeLogin}
                     />
                 </div>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" className="btn btn-primary">
                     Iniciar Sesión
                 </button>
             </form>

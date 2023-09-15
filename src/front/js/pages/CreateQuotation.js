@@ -7,6 +7,7 @@ import QuotationInputs from "../component/QuotationInputs";
 import { IVA } from '/workspaces/Grupo3-ProyectoFinal/src/front/js/config.js';
 import { Link } from "react-router-dom";
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import "../../styles/createQuotation.css";
 
 const CreateQuotation = () => {
   const [lead, setLeadName] = useState("");

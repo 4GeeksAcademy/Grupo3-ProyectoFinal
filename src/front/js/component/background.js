@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../../styles/background.css";
 
 export const Background = (props) => {
     return (
