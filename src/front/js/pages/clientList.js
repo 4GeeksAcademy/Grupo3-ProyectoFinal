@@ -31,10 +31,7 @@ export const ClientList = () => {
 						<div className="row">
 							<div className="col"><strong>Clientes</strong></div>
 							<div className="col">
-								<form onsubmit="event.preventDefault();" role="search">
-									<input id="search" type="search" placeholder="Search..." autofocus required />
-									<button type="submit">Go</button>    
-								</form>
+									<input id="search" type="search" placeholder="Search..."  required />
 							</div>
 						</div>
 					</div>

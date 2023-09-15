@@ -6,18 +6,12 @@ import "../../styles/clientInfo.css";
 
 export const ClientInfo = () => {
 	const { store, actions } = useContext(Context);
-    actions.getClients
-    // let params = useParams();
-    // let findPeople = ()=>{
-    //     let person = store.clients.find((item)=> item._id == params.id)
-    //     setDetail(person)
-    //    }
-       
-    //    useEffect(()=>{findPeople()},[store.clients])
+    actions.getClients()
+
 
 	return (
-            <>
-            {store.clients.length == 0 ? "Cargando": store.clients.map((item, index)=>{ 
+            
+            
                 <div className="fo">
                 <div className="card-container">
                     <Link  to={`/clientList`} className="pro">Cancelar</Link>
@@ -45,11 +39,11 @@ export const ClientInfo = () => {
                     </div>
                 </div>
             </div>
-            })}
+            
             
 
             
-            </>
+            
         );
     };
     
