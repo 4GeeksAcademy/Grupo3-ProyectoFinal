@@ -20,7 +20,7 @@ export const Background = (props) => {
                                 </div>
                                 <div className="mx-auto">
                                     <Link className="nav-link text-white" to="/listProject"><i className="fa-solid fa-folder-tree icon-link"></i> Proyectos</Link>
-                                    <Link className="nav-link text-white" to=""><i className="fa-solid fa-user-group icon-link"></i> Clientes</Link>
+                                    <Link className="nav-link text-white" to="/clientList"><i className="fa-solid fa-user-group icon-link"></i> Clientes</Link>
                                     <Link className="nav-link text-white" to="/quotation/list"><i className="fa-solid fa-hand-holding-dollar icon-link"></i> Cotizaciones</Link>
                                 </div>
                                 <div className="mt-auto pb-5 pb-lg-0 mx-auto">
