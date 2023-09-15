@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home";
-import CreateQuotation from "./pages/CreateQuotation"
+import CreateQuotation from "./pages/CreateQuotation";
+import {ListQuotations} from "./pages/ListQuotations";
 import { CreateProject } from "./pages/createProject";
 import { EditProject } from "./pages/editProject";
 import { ListProject } from "./pages/listProject";
@@ -24,7 +25,8 @@ const Layout = () => {
                     {/* <Navbar /> */}
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<CreateQuotation/>} path="/user/client/quotation/create"/>
+                        <Route element={<CreateQuotation/>} path="/quotation/create"/>
+                        <Route element={<ListQuotations/>} path="/quotation/list"/>
                         <Route element={<CreateProject />} path="/createProject" />
                         <Route element={<EditProject />} path="/editProject:id" />
                         <Route element={<ListProject />} path="/listProject" />

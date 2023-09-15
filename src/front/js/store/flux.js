@@ -13,10 +13,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			],
-
-			// quotations: []
+			], 
+			quotations: [],
 		},
+
 		actions: {
 			
 			// Use getActions to call a function within a fuction
@@ -37,23 +37,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			postQuotationData: async (taskArray) => {
+			getQuotations:  async () => {
 				try {
-				  const response = await fetch(process.env.BACKEND_URL + "/api/user/client/quation/create", {
+					const response = await fetch(process.env.BACKEND_URL + "/api/quotation/get");
+					const data = await response.json();
+					console.log("i");
+					console.log(data);
+
+					setStore({quotations: data.quotations});
+					
+				} catch (error) {
+					console.error(error);
+				}
+			},
+
+			postQuotationData: async (taskArray,leadName, projectProposalName, total,callback) => {
+				
+				let bodyObject = {
+					'tasks':taskArray,
+					'project_proposal_name': projectProposalName,
+					'lead_name': leadName,
+					'total': total
+				}
+				
+				try {
+				  const response = await fetch(process.env.BACKEND_URL + "/api/quation/create", {
 					method: 'POST', 
 					headers: {
 					  'Content-Type': 'application/json'
 					},
-					body: JSON.stringify(taskArray) 
+					
+					body: JSON.stringify(bodyObject) 
 				  });
 			
 				  if (!response.ok) {
 					throw new Error('Error en la petición');
 				  }
-			
-				  const responseData = await response.json(); 
-				  setData(responseData);
-				} catch (error) { 
+
+				  if (callback) {
+					callback(); 
+				  }
+				}
+				
+				catch (error) { 
 				  console.error('Ha habido un error:', error);
 				}
 			  

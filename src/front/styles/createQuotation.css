@@ -1,12 +1,38 @@
+
+.title{
+    font-family: 'Roboto', sans-serif;
+    size: 20px;
+}
+
+.header-labels{
+    width: 55%;
+    font-weight: bold;
+}
+   
+.workspace-title{
+    background-color: #23CFB0;
+    border-radius: 0 34px 0 50px;
+    margin-left: 80%;
+    width: 20%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    position: absolute;
+    top: 0%;
+}
+
+.header-inputs-container{
+    width: 34%;
+    margin-top: 1%;
+    margin: auto;
+}
 .workspace-table {
     background-color: white;
     padding-top: 2%;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     border-radius: 17px;
     width: 58%;
-    margin-left: 26%;
+    margin-left: 28%;
     height: 62vh;
-    margin-top: 16%;
 }
 
 .table-header {
@@ -46,7 +72,7 @@
     background-color: #23CFB0;
     border-radius: '25px';
     border: none;
-    margin-top: 21%; 
+    margin-top: 16%; 
 }
 
 .h5-break {
@@ -69,4 +95,9 @@
 .total-label{
     margin-right: 1%;
     width: 200px;
+}
+
+.alert{
+    position: absolute;
+
 }

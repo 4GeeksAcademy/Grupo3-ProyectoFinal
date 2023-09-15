@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-
+from datetime import date
 db = SQLAlchemy()
 
 class User(db.Model):
@@ -84,44 +84,42 @@ class Project(db.Model):
             "client_id": self.client_id
         }
 
+class Quotation(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    project_proposal_name = db.Column(db.String(50), unique = False, nullable = False)
+    lead_name = db.Column(db.String(50), unique = False, nullable = False)
+    date = db.Column(db.Date, unique = False, nullable = False, default=date.today())
+    total = db.Column(db.String(10),unique = False, nullable = False)
+    # relationships (user)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    user = db.relationship("User")
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "project_proposal_name": self.project_proposal_name,
+            "lead_name": self.lead_name,
+            "date": self.date,
+            "total": self.total,
+            "user_id": self.user_id,
+        }
+
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20), unique = False, nullable = False)
-    state = db.Column(db.String(20), unique = False)
+    name = db.Column(db.String(80), unique = False, nullable = False)
     time = db.Column(db.Time, unique = False, nullable = False)
      # relationships (user)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     user = db.relationship("User")
-     # relationships (project)
-    project_id = db.Column(db.Integer, db.ForeignKey("project.id"))
-    project = db.relationship("Project")
+
+    quotation_id = db.Column(db.Integer, db.ForeignKey("quotation.id"))
+    quotation = db.relationship("Quotation")
 
     def serialize(self):
         return {
             "id": self.id,
             "name": self.name,
             "time": self.time,
-            "state": self.state,
             "user_id": self.user_id,
-            "client_id": self.client_id
         }
 
-class Quotation(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    task_name = db.Column(db.String(50), unique = False, nullable = False)
-    estimated_time = db.Column(db.Time, unique = False, nullable = False)
-    # relationships (user)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    user = db.relationship("User")
-
-    client_id = db.Column(db.Integer, db.ForeignKey("client.id"))
-    client = db.relationship("Client")
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "task_name": self.task_name,
-            "estimated_time": self.estimated_time,
-            "user_id": self.user_id,
-            "client_id": self.client_id
-        }
