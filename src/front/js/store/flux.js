@@ -117,48 +117,93 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("i");
 					console.log(data);
 
-					setStore({quotations: data.quotations});
-					
+					setStore({ quotations: data.quotations });
+
 				} catch (error) {
 					console.error(error);
 				}
 			},
 
-			postQuotationData: async (taskArray,leadName, projectProposalName, total,callback) => {
-				
+			postQuotationData: async (taskArray, leadName, projectProposalName, total, callback) => {
+
 				let bodyObject = {
-					'tasks':taskArray,
+					'tasks': taskArray,
 					'project_proposal_name': projectProposalName,
 					'lead_name': leadName,
 					'total': total
 				}
-				
-				try {
-				  const response = await fetch(process.env.BACKEND_URL + "/api/quation/create", {
-					method: 'POST', 
-					headers: {
-					  'Content-Type': 'application/json'
-					},
-					
-					body: JSON.stringify(bodyObject) 
-				  });
-			
-				  if (!response.ok) {
-					throw new Error('Error en la petición');
-				  }
 
-				  if (callback) {
-					callback(); 
-				  }
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "/api/quation/create", {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+
+						body: JSON.stringify(bodyObject)
+					});
+
+					if (!response.ok) {
+						throw new Error('Error en la petición');
+					}
+
+					if (callback) {
+						callback();
+					}
 				}
-				
-				catch (error) { 
-				  console.error('Ha habido un error:', error);
+
+				catch (error) {
+					console.error('Ha habido un error:', error);
 				}
 
 			},
-        
-      handleChange: (e, type) => {
+
+			resetPasswordRequest: async (email) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/reset_password_request', {
+						method: 'POST',
+						body: JSON.stringify(email),
+						headers: {
+							'Content-Type': 'application/json',
+						},
+					});
+
+					if (response.ok) {
+						return true;
+					} else {
+						const result = await response.json();
+						alert(result.message);
+					}
+				} catch (error) {
+					console.error(error + ' Error requesting password reset');
+					return false;
+				}
+			},
+
+			updatePassword: async (data, token) => {
+				try {
+					const response = await fetch(process.env.BACKEND_URL + '/update_password/' + token, {
+						method: 'POST',
+						body: JSON.stringify(data),
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': `Bearer ${token}`
+						},
+					});
+
+					if (response.ok) {
+						return true;
+					} else {
+						const result = await response.json();
+						alert(result.message);
+					}
+				} catch (error) {
+					console.error(error + ' Error requesting password reset');
+					return false;
+				}
+			},
+
+			handleChange: (e, type) => {
 				const store = getStore()
 				if (type == "login") {
 					const newUserData = { ...store.login_user }
