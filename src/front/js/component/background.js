@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../../styles/background.css";
 
 export const Background = (props) => {
     return (
@@ -12,18 +13,19 @@ export const Background = (props) => {
                         </button>
                         <div className="collapse navbar-collapse h-100" id="navbarToggler">
                             <nav className="nav flex-column h-100">
+                            {/* <nav className="flex-column h-100"> */}
                                 <div className="d-flex flex-column align-items-center">
                                     <img src="https://picsum.photos/200" alt="Nombre del Usuario" className="user-photo rounded-circle" />
                                     <p className="fw-bold text-center text-white pt-2 pb-4">Nombre del Usuario</p>
                                 </div>
                                 <div className="mx-auto">
-                                    <Link className="nav-link text-white" to="#"><i className="fa-solid fa-folder-tree icon-link"></i> Proyectos</Link>
-                                    <Link  to={`/clientList`} className="nav-link text-white"><i className="fa-solid fa-user-group icon-link"></i> Clientes</Link>
-                                    <Link className="nav-link text-white" to="#"><i className="fa-solid fa-hand-holding-dollar icon-link"></i> Cotizaciones</Link>
+                                    <Link className="nav-link text-white" to="/listProject"><i className="fa-solid fa-folder-tree icon-link"></i> Proyectos</Link>
+                                    <Link className="nav-link text-white" to="/clientList"><i className="fa-solid fa-user-group icon-link"></i> Clientes</Link>
+                                    <Link className="nav-link text-white" to="/quotation/list"><i className="fa-solid fa-hand-holding-dollar icon-link"></i> Cotizaciones</Link>
                                 </div>
                                 <div className="mt-auto pb-5 pb-lg-0 mx-auto">
-                                    <Link className="nav-link text-white" to="#"><i className="fa-solid fa-gear icon-link"></i> Configuración</Link>
-                                    <Link className="nav-link text-white" to="#"><i className="fa-solid fa-right-from-bracket icon-link"></i> Cerrar Sesión</Link>
+                                    <Link className="nav-link text-white" to=""><i className="fa-solid fa-gear icon-link"></i> Configuración</Link>
+                                    <Link className="nav-link text-white" to=""><i className="fa-solid fa-right-from-bracket icon-link"></i> Cerrar Sesión</Link>
                                 </div>
                             </nav>
                         </div>
@@ -31,6 +33,7 @@ export const Background = (props) => {
                 </div>
                 {props.children}
             </div>
+
         </div>
 
     );

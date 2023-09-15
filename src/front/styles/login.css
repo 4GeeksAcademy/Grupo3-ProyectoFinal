@@ -1,0 +1,27 @@
+.RegistroUsuarioDiv {
+    font-weight: 500;
+    width: 25rem;
+    background-color: rgba(0, 128, 128, 0.3);
+    /* Turquesa más claro con más transparencia */
+    color: #1e3151;
+    border-radius: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 8rem;
+}
+
+#miId{
+    width: 20rem;
+}
+
+.btn.btn-primary {
+    width: 20rem;
+    background-color: #008080;
+    /* Turquesa verde oscuro */
+    color: #fff;
+    /* Color de texto en el botón */
+}
+
+.tituloRegistro {
+    display: flex;
+    justify-content: center;
+}

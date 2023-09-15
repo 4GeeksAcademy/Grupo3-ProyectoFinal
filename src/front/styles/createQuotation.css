@@ -1,0 +1,103 @@
+
+.title{
+    font-family: 'Roboto', sans-serif;
+    size: 20px;
+}
+
+.header-labels{
+    width: 55%;
+    font-weight: bold;
+}
+   
+.workspace-title{
+    background-color: #23CFB0;
+    border-radius: 0 34px 0 50px;
+    margin-left: 80%;
+    width: 20%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    position: absolute;
+    top: 0%;
+}
+
+.header-inputs-container{
+    width: 34%;
+    margin-top: 1%;
+    margin: auto;
+}
+.workspace-table {
+    background-color: white;
+    padding-top: 2%;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 17px;
+    width: 58%;
+    margin-left: 28%;
+    height: 62vh;
+}
+
+.table-header {
+    width: 88%;
+    border: solid;
+    border-radius: 14px;
+    background-color: #23CFB0;
+    padding: 0.5% 0;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    height: 5vh;
+    margin-left: 5%;
+    margin-bottom: 1%;
+}   
+
+.table-header h5 {
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 800;
+}
+
+.add-icon {
+    padding-top: 1%;
+    padding-left: 4%;
+}
+
+.task-column {
+    margin-left: 43%;
+}
+
+.body-container {
+    height: 68%;
+    overflow-y: scroll;
+}
+
+.app-button {
+    background-color: #23CFB0;
+    border-radius: '25px';
+    border: none;
+    margin-top: 16%; 
+}
+
+.h5-break {
+    white-space: pre-line;
+    text-align: center;
+}
+
+.total-card {
+    background-color: rgba(80, 210, 186, 0.31);
+}
+
+.total-card input {
+    background-color: transparent;
+    width: 90%;
+}
+
+.total-card input:focus {
+    outline: none;
+}
+.total-label{
+    margin-right: 1%;
+    width: 200px;
+}
+
+.alert{
+    position: absolute;
+
+}
