@@ -97,8 +97,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         });
       },
-    }
-      },
+    },
       
 			isPropertyEmpty: (obj) => {
 				for (const key in obj) {
