@@ -11,11 +11,17 @@ import { Context } from "../store/appContext";
 
 export const ClientList = () => {
 	const { store, actions } = useContext(Context);
-	actions.getClients()
+	
 	const deleteThem = (client_id) => {
 		actions.deleteClients(client_id);
 	};
-	// useEffect(()=>{getClients()}, [])
+
+	useEffect(() => {
+	
+ 	actions.getClients();	
+	
+	}, []);
+	
 
 	return (
 		

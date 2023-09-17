@@ -27,78 +27,79 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			projects: [],
 			quotations: [],
-      clients: [],
+			clients: [],
 			favorites: []
 		},
 
 		actions: {
-      addFavorites: (fav) => {
-        let store= getStore() 
-        let verify = store.favorites.some((item)=> fav._id == item._id)
-        if (verify) {
-          let newFavorites = store.favorites.filter((item)=> item._id != fav._id)
-          setStore({
-            favorites: newFavorites
-          })
-        } else {
-          setStore({
-            favorites: [...store.favorites, fav]
-          })
-        }
-      },
-      
-      getClients: () => {
-        fetch (process.env.BACKEND_URL + "/api/user/clients")
-        .then ((response) => response.json())
-        .then ((data) =>{
-          setStore({clients: data.clients})
-        }).catch((error)=>{
-          console.log(error);})
-      },
-        
-      // deleteClients: () => {
-      // 	fetch (process.env.BACKEND_URL + "/api/user/clients" + id, {
-      // 		method: 'DELETE'
-      // 	}) 
-      // 	.then ((response) => response.json())
-      // 	.then ((data) =>{
-      // 		setStore({clients: data.clients})
-      // 	}).catch((error)=>{
-      // 		console.log(error);})
-      // },
-        
-      deleteClients: async (client_Id) => {
-        Swal.fire({
-          title: '¿Estás seguro?',
-          text: "Una vez eliminado el cliente no se podrá recuperar información relacionada a esta persona",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#23cfb06b',
-          cancelButtonColor: '#03BFCB',
-          confirmButtonText: 'Borrar'
-        }).then(async (result) => {
-          if (result.isConfirmed) {
-            try {
-              const response = await fetch(process.env.BACKEND_URL + `api/user/clients/${client_Id}`, {
-                method: 'DELETE',
-              });
-        if (response.ok) {
-                Swal.fire("Eliminado", "El cliente ha sido eliminado", "success").then(() => {
-                  getActions().getClients();
-                });
-              } else {
-                Swal.fire("Error", "Hubo un error eliminando este cliente, por favor, vuelve a intentarlo", "error");
-              }
-            } catch (error) {
-              Swal.fire("Error", "Ocurrió un error al eliminar el cliente", "error");
-            }
-          } else {
-            Swal.fire("Cancelado", "", "info");
-          }
-        });
-      },
-    },
-      
+			addFavorites: (fav) => {
+				let store = getStore()
+				let verify = store.favorites.some((item) => fav._id == item._id)
+				if (verify) {
+					let newFavorites = store.favorites.filter((item) => item._id != fav._id)
+					setStore({
+						favorites: newFavorites
+					})
+				} else {
+					setStore({
+						favorites: [...store.favorites, fav]
+					})
+				}
+			},
+
+			getClients: () => {
+				fetch(process.env.BACKEND_URL + "/api/user/clients")
+					.then((response) => response.json())
+					.then((data) => {
+						setStore({ clients: data.clients })
+					}).catch((error) => {
+						console.log(error);
+					})
+			},
+
+			// deleteClients: () => {
+			// 	fetch (process.env.BACKEND_URL + "/api/user/clients" + id, {
+			// 		method: 'DELETE'
+			// 	}) 
+			// 	.then ((response) => response.json())
+			// 	.then ((data) =>{
+			// 		setStore({clients: data.clients})
+			// 	}).catch((error)=>{
+			// 		console.log(error);})
+			// },
+
+			deleteClients: async (client_Id) => {
+				Swal.fire({
+					title: '¿Estás seguro?',
+					text: "Una vez eliminado el cliente no se podrá recuperar información relacionada a esta persona",
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#23cfb06b',
+					cancelButtonColor: '#03BFCB',
+					confirmButtonText: 'Borrar'
+				}).then(async (result) => {
+					if (result.isConfirmed) {
+						try {
+							const response = await fetch(process.env.BACKEND_URL + `api/user/clients/${client_Id}`, {
+								method: 'DELETE',
+							});
+							if (response.ok) {
+								Swal.fire("Eliminado", "El cliente ha sido eliminado", "success").then(() => {
+									getActions().getClients();
+								});
+							} else {
+								Swal.fire("Error", "Hubo un error eliminando este cliente, por favor, vuelve a intentarlo", "error");
+							}
+						} catch (error) {
+							Swal.fire("Error", "Ocurrió un error al eliminar el cliente", "error");
+						}
+					} else {
+						Swal.fire("Cancelado", "", "info");
+					}
+				});
+			},
+
+
 			isPropertyEmpty: (obj) => {
 				for (const key in obj) {
 					if (obj[key] === "" || obj[key] == null || obj[key] === undefined) {
@@ -107,7 +108,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				return false;
 			},
-        
+
 			signUpUser: async () => {
 				const store = getStore()
 				const actions = getActions()
@@ -179,7 +180,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getQuotations:  async () => {
+			getQuotations: async () => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + "/api/quotation/get");
 					const data = await response.json();
@@ -283,9 +284,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					newUserData[e.target.name] = e.target.value
 					setStore({ user_data: newUserData })
 				}
-      },
-      
-      getProjects: () => {
+			},
+
+			getProjects: () => {
 				const requestOptions = {
 					method: "GET",
 					headers: {
@@ -298,7 +299,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ projects: data["projects"] }))
 					.catch(error => console.log("Error al obtener proyectos:", error));
 			},
-        
+
 			getProjectById: async (id) => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + `api/project/${id}`);
@@ -310,7 +311,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error al obtener proyecto:", error);
 				}
 			},
-        
+
 			postProjectRegister: async (client, projectName, projectDescription, startDate, endDate, hourPrice) => {
 				const requestOptions = {
 					method: "POST",
@@ -336,7 +337,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					Swal.fire("Error", "Ocurrió un error al crear el proyecto", "error");
 				}
 			},
-        
+
 			deleteProject: async (projectId) => {
 				Swal.fire({
 					title: '¿Estás seguro?',
@@ -352,7 +353,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							const response = await fetch(process.env.BACKEND_URL + `api/project/${projectId}`, {
 								method: 'DELETE',
 							});
-              if (response.ok) {
+							if (response.ok) {
 								Swal.fire("Eliminado", "El proyecto ha sido eliminado", "success").then(() => {
 									getActions().getProjects();
 								});
@@ -367,8 +368,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				});
 			},
-      
-      updateProject: async (id, projectDetails) => {
+
+			updateProject: async (id, projectDetails) => {
 				const requestOptions = {
 					method: 'PUT',
 					headers: {
@@ -376,7 +377,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify(projectDetails)
 				};
-        try {
+				try {
 					const response = await fetch(process.env.BACKEND_URL + `api/project/${id}`, requestOptions);
 					const data = await response.json();
 					if (response.status === 200) {
@@ -389,8 +390,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error al editar el proyecto:", error);
 				}
 			},
-        
-      updateProjectData: (updatedData) => {
+
+			updateProjectData: (updatedData) => {
 				const currentData = getStore().projectData;
 				setStore({
 					projectData: {
@@ -398,9 +399,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						...updatedData
 					}
 				});
-      }
-    }
+			}
+
+		}
 	};
+};
 
 export default getState;
 
