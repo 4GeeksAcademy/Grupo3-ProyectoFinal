@@ -8,13 +8,12 @@ import "../../styles/listQuotation.css";
 
 export const ListQuotations = () => {
 
-    useEffect(() => {
-        state.actions.getQuotations();
-    }, []);
-
     const { store, actions } = useContext(Context);
-    console.log("Aqui");
-    console.log(store.quotations);
+    useEffect(() => {
+        console.log(actions)
+        actions.getQuotations();
+    }, []);
+   
     return (
         <>
             <Background>
