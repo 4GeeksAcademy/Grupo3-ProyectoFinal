@@ -168,6 +168,19 @@ def login():
     return jsonify(response_body), 200
 
 
+@app.route('/profile', methods=['GET', 'PUT'])
+@jwt_required()
+def get_profile():
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+
+    if user:
+        user_data = user.serialize()
+        return jsonify({"user": user_data}), 200
+    else:
+        return jsonify({"message": "Usuario no encontrado"}), 404
+
+
 @app.route('/reset_password_request', methods=['POST'])
 def reset_password_request():
     email = request.json.get('email')

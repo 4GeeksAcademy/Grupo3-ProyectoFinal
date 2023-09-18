@@ -38,7 +38,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				return false;
 			},
-        
+
 			signUpUser: async () => {
 				const store = getStore()
 				const actions = getActions()
@@ -95,7 +95,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(result);
 
 					if (response.ok) {
-						localStorage.setItem("jwt-token", result.access_token);
+						localStorage.setItem("jwt-token", result.token);
 						alert("Login success");
 						setStore({ isloged: true });
 						return true;
@@ -110,7 +110,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			getQuotations:  async () => {
+			getProfile: async () => {
+				try {
+					const token = localStorage.getItem("jwt-token");
+					if (token) {
+						console.log("token" + token)
+						const response = await fetch(process.env.BACKEND_URL + "/profile", {
+							method: 'GET',
+							headers: {
+								'Content-Type': 'application/json',
+								'Authorization': `Bearer ${token}`
+							}
+						});
+						console.log(response)
+						if (response.ok) {
+							const result = await response.json();
+							setStore({ current_user: result.user });
+						} else {
+							throw new Error('Failed to fetch user profile');
+						}
+					}
+				} catch (error) {
+					console.error(error);
+				}
+			},
+
+			getQuotations: async () => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + "/api/quotation/get");
 					const data = await response.json();
@@ -214,9 +239,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					newUserData[e.target.name] = e.target.value
 					setStore({ user_data: newUserData })
 				}
-      },
-      
-      getProjects: () => {
+			},
+
+			getProjects: () => {
 				const requestOptions = {
 					method: "GET",
 					headers: {
@@ -229,7 +254,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => setStore({ projects: data["projects"] }))
 					.catch(error => console.log("Error al obtener proyectos:", error));
 			},
-        
+
 			getProjectById: async (id) => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + `api/project/${id}`);
@@ -241,7 +266,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error al obtener proyecto:", error);
 				}
 			},
-        
+
 			postProjectRegister: async (client, projectName, projectDescription, startDate, endDate, hourPrice) => {
 				const requestOptions = {
 					method: "POST",
@@ -267,7 +292,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					Swal.fire("Error", "Ocurrió un error al crear el proyecto", "error");
 				}
 			},
-        
+
 			deleteProject: async (projectId) => {
 				Swal.fire({
 					title: '¿Estás seguro?',
@@ -283,7 +308,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							const response = await fetch(process.env.BACKEND_URL + `api/project/${projectId}`, {
 								method: 'DELETE',
 							});
-              if (response.ok) {
+							if (response.ok) {
 								Swal.fire("Eliminado", "El proyecto ha sido eliminado", "success").then(() => {
 									getActions().getProjects();
 								});
@@ -298,8 +323,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				});
 			},
-      
-      updateProject: async (id, projectDetails) => {
+
+			updateProject: async (id, projectDetails) => {
 				const requestOptions = {
 					method: 'PUT',
 					headers: {
@@ -307,7 +332,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					},
 					body: JSON.stringify(projectDetails)
 				};
-        try {
+				try {
 					const response = await fetch(process.env.BACKEND_URL + `api/project/${id}`, requestOptions);
 					const data = await response.json();
 					if (response.status === 200) {
@@ -320,8 +345,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error al editar el proyecto:", error);
 				}
 			},
-        
-      updateProjectData: (updatedData) => {
+
+			updateProjectData: (updatedData) => {
 				const currentData = getStore().projectData;
 				setStore({
 					projectData: {
@@ -329,8 +354,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						...updatedData
 					}
 				});
-      }
-    }
+			}
+		}
 	};
 };
 
