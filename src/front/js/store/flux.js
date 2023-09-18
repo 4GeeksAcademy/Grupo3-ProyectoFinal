@@ -165,7 +165,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(result);
 
 					if (response.ok) {
-						localStorage.setItem("jwt-token", result.access_token);
+						localStorage.setItem("jwt-token", result.token);
 						alert("Login success");
 						setStore({ isloged: true });
 						return true;
@@ -179,6 +179,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ isloged: false })
 				}
 			},
+
+
+			getProfile: async () => {
+				try {
+					const token = localStorage.getItem("jwt-token");
+					if (token) {
+						console.log("token" + token)
+						const response = await fetch(process.env.BACKEND_URL + "/profile", {
+							method: 'GET',
+							headers: {
+								'Content-Type': 'application/json',
+								'Authorization': `Bearer ${token}`
+							}
+						});
+						console.log(response)
+						if (response.ok) {
+							const result = await response.json();
+							setStore({ current_user: result.user });
+						} else {
+							throw new Error('Failed to fetch user profile');
+						}
+					}
+				} catch (error) {
+					console.error(error);
+				}
+			},
+
+
 
 			getQuotations: async () => {
 				try {
