@@ -43,7 +43,7 @@ class User(db.Model):
 class Client(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(200), unique=True, nullable=False)
     full_name = db.Column(db.String(50), unique=False, nullable=False)
     phone = db.Column(db.String(20), unique=True, nullable=True)
     description = db.Column(db.String(200), unique=False)
@@ -53,6 +53,9 @@ class Client(db.Model):
     company_name = db.Column(db.String(20), unique=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     user = db.relationship("User")
+
+    def __repr__(self):
+        return f"Cliente llamado {self.full_name}"
 
     def serialize(self):
         return {
