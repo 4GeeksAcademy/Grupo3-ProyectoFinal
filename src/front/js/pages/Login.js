@@ -9,7 +9,7 @@ const Login = () => {
     const handleChangeLogin = (e) => {
         actions.handleChange(e, "login")
     }
-    store.isloged ? navigate('/profile') : null
+    store.isloged ? navigate('/listProject') : null
     return (
         <div
             className=" RegistroUsuarioDiv container d-flex justify-content-center align-items-center"
