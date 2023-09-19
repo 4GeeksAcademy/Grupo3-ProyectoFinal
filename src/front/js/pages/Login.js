@@ -11,13 +11,13 @@ const Login = () => {
         actions.handleChange(e, "login");
     };
 
-    store.isloged ? navigate('/profile') : null;
+    store.isloged ? navigate('/listProject') : null;
 
     return (
-        <div className="lContainer">
-            <div className="lItem">
-                <div className="loginForm">
-                    <h2>Iniciar Sesión</h2>
+        <div className="lContainer" id="lContainer">
+            <div className="lItem" id="lItem">
+                <div className="loginForm" id="loginForm">
+                    <h2 id="tituloRegistro">Iniciar Sesión</h2>
                     <form noValidate onSubmit={(e) => { e.preventDefault(); actions.logInUser(); }}>
                         <div className="mb-3">
                             <label htmlFor="email" className="form-label">Correo
@@ -44,7 +44,7 @@ const Login = () => {
                                 onChange={handleChangeLogin}
                             />
                         </div>
-                        <div className="forgot-password-link">
+                        <div className="forgot-password-link" id="forgot-password-link">
                             <Link to="/reset_password_request">¿Olvidó su contraseña?</Link>
                         </div>
                         <div style={{ textAlign: 'center' }}>

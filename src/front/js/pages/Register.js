@@ -14,10 +14,10 @@ const Register = () => {
     };
 
     return (
-        <div className="RContainer">
-            <div className="lItem">
-                <div className="loginForm">
-                    <h2>Registro</h2>
+        <div className="RContainer" id="RContainer">
+            <div className="lItem" id="lItem">
+                <div className="loginForm" id="loginForm">
+                    <h2 id="tituloRegistro">Registro</h2>
                     <form noValidate onSubmit={(e) => { e.preventDefault(); actions.signUpUser(); e.target.reset(); }}>
                         <div className="mb-3">
                             <label htmlFor="name" className="form-label">
