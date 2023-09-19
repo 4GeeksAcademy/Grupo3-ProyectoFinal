@@ -1,6 +1,6 @@
 /* styles.css */
 
-.RegistroUsuarioDiv {
+#RegistroUsuarioDiv {
     height: 35rem;
     display: flex;
     justify-content: center;
@@ -8,17 +8,17 @@
     flex-direction: column;
 }
 
-.tituloRegistro {
+#tituloRegistro {
     margin-bottom: 1rem;
     font-size: 1.5rem;
     /* Cambia el tamaño de la fuente del título */
 }
 
-.form-label {
+#form-label {
     font-weight: bold;
 }
 
-.form-control {
+#form-control {
     width: 100%;
     padding: 0.5rem;
     margin-bottom: 1rem;
@@ -26,7 +26,7 @@
     border-radius: 4px;
 }
 
-.btn-primary {
+#btn-primary {
     background-color: #23CFB0;
     color: #fff;
     border: none;
@@ -34,11 +34,11 @@
     border-radius: 2px;
 }
 
-.btn-primary:hover {
+#btn-primary:hover {
     background-color: #23CFB0;
 }
 
-.RContainer {
+#RContainer {
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
@@ -52,11 +52,11 @@
     background-color: azure;
 }
 
-.lItem {
+#lItem {
     width: 310px;
 }
 
-.loginForm {
+#loginForm {
     background-color: white;
     padding-left: 30px;
     padding-right: 30px;

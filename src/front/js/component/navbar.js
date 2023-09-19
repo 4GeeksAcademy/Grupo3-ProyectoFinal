@@ -6,16 +6,17 @@ function Navbar() {
 	const [click, setClick] = useState(false);
 
 	const handleClick = () => setClick(!click);
+
 	return (
 		<>
-			<nav className="navbar">
+			<nav className="navbar" id="myNavbar">
 				<div className="nav-container">
-					<NavLink exact to="/" className="nav-logo">
+					<NavLink exact to="/" className="nav-logo" id="logo">
 						FreeLancify
 						<i className="fas fa-code"></i>
 					</NavLink>
 
-					<ul className={click ? "nav-menu active" : "nav-menu"}>
+					<ul className={click ? "nav-menu active" : "nav-menu"} id="menu">
 						<li className="nav-item">
 							<NavLink
 								exact
@@ -50,7 +51,7 @@ function Navbar() {
 							</NavLink>
 						</li>
 					</ul>
-					<div className="nav-icon" onClick={handleClick}>
+					<div className="nav-icon" onClick={handleClick} id="menuIcon">
 						<i className={click ? "fas fa-times" : "fas fa-bars"}></i>
 					</div>
 				</div>

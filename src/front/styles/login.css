@@ -1,6 +1,6 @@
 /* styles.css */
 
-.RegistroUsuarioDiv {
+#RegistroUsuarioDiv {
     height: 35rem;
     display: flex;
     justify-content: center;
@@ -8,7 +8,7 @@
     flex-direction: column;
 }
 
-.tituloRegistro {
+#tituloRegistro {
     margin-bottom: 1rem;
     font-size: 1.5rem;
     /* Cambia el tamaño de la fuente del título */
@@ -40,7 +40,7 @@
     background-color: #23CFB0;
 }
 
-.lContainer {
+#lContainer {
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
@@ -54,11 +54,11 @@
     background-color: azure;
 }
 
-.lItem {
+#lItem {
     width: 310px;
 }
 
-.loginForm {
+#loginForm {
     background-color: white;
     padding-left: 30px;
     padding-right: 30px;
@@ -70,7 +70,7 @@
     border: 1px solid #d8d8da;
 }
 
-.forgot-password-link {
+#forgot-password-link {
     margin-top: -18px;
     margin-bottom: 15px;
 }
