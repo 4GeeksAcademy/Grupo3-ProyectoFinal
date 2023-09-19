@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from 'react-router-dom';
 import Background from "../component/background";
+import "../../styles/editProject.css";
 
 export const EditProject = () => {
     const { store, actions } = useContext(Context);
@@ -41,7 +42,7 @@ export const EditProject = () => {
                         <div className="col-12 col-md-6">Cliente asociado</div>
                         <div className="col-12 col-md-6">
                             {isEditing ?
-                                <><select className="bg-color rounded-3 px-2 px-md-3 py-1" value={store.projectData.client} onChange={(e) => handleInputChange('client', e.target.value)}>
+                                <><select className="bg-color rounded-3" value={store.projectData.client} onChange={(e) => handleInputChange('client', e.target.value)}>
                                     <option value="">Selecciona el cliente</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
@@ -54,7 +55,7 @@ export const EditProject = () => {
                         <div className="col-12 col-md-6">Nombre del proyecto</div>
                         <div className="col-12 col-md-6">
                             {isEditing ?
-                                <input type="text" className="bg-color rounded-3 px-2 px-md-3 py-1" value={store.projectData.name} onChange={(e) => handleInputChange('name', e.target.value)} placeholder="Escribe el proyecto" required /> :
+                                <input type="text" className="bg-color rounded-3" value={store.projectData.name} onChange={(e) => handleInputChange('name', e.target.value)} placeholder="Escribe el proyecto" required /> :
                                 <span className="bg-color rounded-3 px-2 px-md-3 py-1">{store.projectData.name}</span>}
                         </div>
                     </div>
@@ -62,7 +63,7 @@ export const EditProject = () => {
                         <div className="col-12 col-md-6">Descripción del proyecto</div>
                         <div className="col-12 col-md-6 overflow-auto desc-overflow">
                             {isEditing ?
-                                <input type="text" className="bg-color rounded-3 px-2 px-md-3 py-1" value={store.projectData.description} onChange={(e) => handleInputChange('description', e.target.value)} placeholder="Describe el proyecto" required /> :
+                                <input type="text" className="bg-color rounded-3" value={store.projectData.description} onChange={(e) => handleInputChange('description', e.target.value)} placeholder="Describe el proyecto" required /> :
                                 <div className="bg-color rounded-3 px-2 px-md-3 py-1">{store.projectData.description}</div>}
                         </div>
                     </div>
@@ -70,7 +71,7 @@ export const EditProject = () => {
                         <div className="col-12 col-md-6">Fecha de inicio</div>
                         <div className="col-12 col-md-6">
                             {isEditing ?
-                                <input type="date" className="bg-color rounded-3 px-2 px-md-3 py-1" value={formatDate(store.projectData.Date)} onChange={(e) => handleInputChange('Date', e.target.value)} required /> :
+                                <input type="date" className="bg-color rounded-3" value={formatDate(store.projectData.Date)} onChange={(e) => handleInputChange('Date', e.target.value)} required /> :
                                 <span className="bg-color rounded-3 px-2 px-md-3 py-1">{formatDate(store.projectData.Date)}</span>}
                         </div>
                     </div>
@@ -78,7 +79,7 @@ export const EditProject = () => {
                         <div className="col-12 col-md-6">Fecha de finalización</div>
                         <div className="col-12 col-md-6">
                             {isEditing ?
-                                <input type="date" className="bg-color rounded-3 px-2 px-md-3 py-1" value={formatDate(store.projectData.deadline)} onChange={(e) => handleInputChange('deadline', e.target.value)} required /> :
+                                <input type="date" className="bg-color rounded-3" value={formatDate(store.projectData.deadline)} onChange={(e) => handleInputChange('deadline', e.target.value)} required /> :
                                 <span className="bg-color rounded-3 px-2 px-md-3 py-1">{formatDate(store.projectData.deadline)}</span>}
                         </div>
                     </div>
@@ -86,7 +87,7 @@ export const EditProject = () => {
                         <div className="col-12 col-md-6">Precio por hora</div>
                         <div className="col-12 col-md-6">
                             {isEditing ?
-                                <input type="number" className="bg-color rounded-3 px-2 px-md-3 py-1" value={store.projectData.hour_price} onChange={(e) => handleInputChange('hour_price', e.target.value)} placeholder="Escribe precio/hora" required /> :
+                                <input type="number" className="bg-color rounded-3" value={store.projectData.hour_price} onChange={(e) => handleInputChange('hour_price', e.target.value)} placeholder="Escribe precio/hora" required /> :
                                 <span className="bg-color rounded-3 px-2 px-md-3 py-1">{store.projectData.hour_price}</span>}
                         </div>
                     </div>

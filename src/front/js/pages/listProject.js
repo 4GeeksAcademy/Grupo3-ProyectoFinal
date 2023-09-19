@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { Context } from "../store/appContext";
 import Background from "../component/background";
+import "../../styles/listProject.css";
 
 export const ListProject = () => {
     const { store, actions } = useContext(Context);
