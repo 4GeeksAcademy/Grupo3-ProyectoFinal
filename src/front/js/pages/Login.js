@@ -11,29 +11,6 @@ const Login = () => {
 
         actions.handleChange(e, "login")
     }
-    store.isloged ? navigate('/listProject') : null
-    return (
-        <div
-            className=" RegistroUsuarioDiv container d-flex justify-content-center align-items-center"
-            style={{
-                height: "24rem",
-            }}
-        >
-            <form noValidate onSubmit={e => { e.preventDefault(); actions.logInUser() }}>
-                <h2 className="tituloRegistro mb-4">Iniciar Sesión</h2>
-                <div className="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">
-                        Correo
-                    </label>
-                    <input
-                        name="email"
-                        type="email"
-                        class="form-control"
-                        id="miId"
-                        placeholder="Ingrese su correo"
-                        onChange={handleChangeLogin}
-                    />
-                </div>
 
     store.isloged ? navigate('/listProject') : null;
 
