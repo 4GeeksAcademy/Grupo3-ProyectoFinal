@@ -14,9 +14,9 @@ import { CreateProject } from "./pages/createProject";
 import { EditProject } from "./pages/editProject";
 import { ListProject } from "./pages/listProject";
 import { ClientList } from "./pages/clientList";
-// import { ClientInfo } from "./pages/clientInfo";
-// import { EditInfo } from "./pages/editInfo";
-// import { AddClient } from "./pages/addClient";
+//import { ClientInfo } from "./pages/clientInfo";
+//import { EditInfo } from "./pages/editInfo";
+//import { AddClient } from "./pages/addClient";
 import injectContext from "./store/appContext";
 import { Footer } from "./component/footer";
 import Navbar from "./component/navbar";
@@ -41,7 +41,6 @@ const Layout = () => {
                         <Route element={<CreateQuotation />} path="/quotation/create" />
                         <Route element={<ListQuotations />} path="/quotation/list" />
                         <Route element={<Register />} path="/register" />
-
                         <Route element={<Login />} path="/login" />
                         <Route element={<Profile />} path="/profile" />
                         <Route element={<Nosotros />} path="/nosotros" />
@@ -52,9 +51,9 @@ const Layout = () => {
                         <Route element={<EditProject />} path="/editProject/:id" />.
                         <Route element={<ListProject />} path="/listProject" />
                         <Route element={<ClientList />} path="/clientList" />
-                        {/* <Route element={<AddClient />} path="/addclient" />
-                        <Route element={<ClientInfo />} path="/clientInfo" />
-                        <Route element={<EditInfo />} path="/editInfo" /> */}
+                        {/* <Route element={<AddClient />} path="/addclient" />  */}
+                        {/* <Route element={<ClientInfo />} path="/clientInfo" /> */}
+                        {/* <Route element={<EditInfo />} path="/editInfo" />   */}
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
