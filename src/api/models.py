@@ -47,7 +47,6 @@ class Client(db.Model):
     full_name = db.Column(db.String(50), unique=False, nullable=False)
     phone = db.Column(db.String(20), unique=True, nullable=True)
     description = db.Column(db.String(200), unique=False)
-    avatar = db.Column(db.String(200), unique=False)
     address = db.Column(db.String(200), unique=False)
     country = db.Column(db.String(20), unique=False, nullable=False)
     company_name = db.Column(db.String(20), unique=False)
