@@ -1,85 +1,85 @@
-import React, { useContext } from 'react'
+import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
-import "../../styles/login.css";
+import "../../styles/register.css";
 
 const Register = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const { store, actions } = useContext(Context);
-    store.signup ? navigate('/login') : null
+
+    store.signup ? navigate('/login') : null;
+
     const handleChangeSignIn = (e) => {
-        actions.handleChange(e, "signup")
-    }
+        actions.handleChange(e, "signup");
+    };
+
     return (
-        <div
-            className=" RegistroUsuarioDiv container d-flex justify-content-center align-items-center"
-            style={{
-                height: "32rem",
-            }}
-        >
-            <form noValidate onSubmit={e => { e.preventDefault(); actions.signUpUser(), e.target.reset() }}>
-                <h2 className="tituloRegistro mb-4">Registrar Usuario</h2>
-                <div className="mb-3">
-                    <label for="exampleInputEmail1" className="form-label">
-                        Nombre
-                    </label>
-                    <input
-                        name='name'
-                        type="name"
-                        className="form-control"
-                        id="exampleInputEmail1"
-                        placeholder="Ingrese su Nombre"
-                        onChange={handleChangeSignIn}
-                    />
+        <div className="RContainer" id="RContainer">
+            <div className="lItem" id="lItem">
+                <div className="loginForm" id="loginForm">
+                    <h2 id="tituloRegistro">Registro</h2>
+                    <form noValidate onSubmit={(e) => { e.preventDefault(); actions.signUpUser(); e.target.reset(); }}>
+                        <div className="mb-3">
+                            <label htmlFor="name" className="form-label">
+                                Nombre
+                            </label>
+                            <input
+                                name="name"
+                                type="text"
+                                className="form-control"
+                                id="name"
+                                placeholder="Ingrese su Nombre"
+                                onChange={handleChangeSignIn}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="last_name" className="form-label">
+                                Apellido
+                            </label>
+                            <input
+                                name="last_name"
+                                type="text"
+                                className="form-control"
+                                id="last_name"
+                                placeholder="Ingrese su Apellido"
+                                onChange={handleChangeSignIn}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="email" className="form-label">
+                                Correo
+                            </label>
+                            <input
+                                name="email"
+                                type="email"
+                                className="form-control"
+                                id="email"
+                                placeholder="Ingrese su correo"
+                                onChange={handleChangeSignIn}
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="password" className="form-label">
+                                Contraseña
+                            </label>
+                            <input
+                                name="password"
+                                type="password"
+                                className="form-control"
+                                id="password"
+                                placeholder="Ingrese una contraseña"
+                                onChange={handleChangeSignIn}
+                            />
+                        </div>
+                        <div style={{ textAlign: 'center' }}>
+                            <button type="submit" className="btn btn-primary">
+                                Registrarse
+                            </button>
+                        </div>
+                        <p id="registerLink" style={{ textAlign: 'center' }}>¿Ya tienes una cuenta? <Link to="/login">Iniciar Sesión</Link></p>
+                    </form>
                 </div>
-                <div className="mb-3">
-                    <label for="exampleInputEmail1" className="form-label">
-                        Apellido
-                    </label>
-                    <input
-                        name="last_name"
-                        type="lastName"
-                        className="form-control"
-                        id="exampleInputEmail1"
-                        placeholder="Ingrese su Apellido"
-                        onChange={handleChangeSignIn}
-                    />
-                </div>
-
-                <div className="mb-3">
-                    <label for="exampleInputPassword1" className="form-label">
-                        Correo
-                    </label>
-                    <input
-                        name='email'
-                        type="email"
-                        className="form-control"
-                        id="exampleInputPassword1"
-                        placeholder="Ingrese su correo"
-                        onChange={handleChangeSignIn}
-                    />
-                </div>
-
-                <div className="mb-4">
-                    <label for="exampleInputPassword1" className="form-label">
-                        Contraseña
-                    </label>
-                    <input
-                        name='password'
-                        type="password"
-                        className="form-control"
-                        id="exampleInputPassword1"
-                        placeholder="Ingrese una contraseña"
-                        onChange={handleChangeSignIn}
-                    />
-                </div>
-                <button type="submit" className="btn btn-primary">
-                    Registrarse
-                </button>
-                <div className="text-center mt-4">
-                    <Link to="/login" className="btn btn-primary">Iniciar Sesión</Link>
-                </div>
-            </form>
+            </div>
         </div>
     );
 };

@@ -409,13 +409,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const response = await fetch(process.env.BACKEND_URL + `api/project/${id}`, requestOptions);
 					const data = await response.json();
 					if (response.status === 200) {
-						console.log(data.msg);
+						Swal.fire("Éxito", data.msg, "success");
 						getActions().getProjectById(id);
 					} else {
-						console.log(data.msg);
+						Swal.fire("Error", data.msg, "error");
 					}
 				} catch (error) {
-					console.log("Error al editar el proyecto:", error);
+					Swal.fire("Error", "Ocurrió un error al editar el proyecto", "error");
 				}
 			},
 
@@ -434,4 +434,3 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
-

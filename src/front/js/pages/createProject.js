@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import Background from "../component/background";
+import "../../styles/createProject.css";
 
 export const CreateProject = () => {
     const { store, actions } = useContext(Context);

@@ -24,7 +24,7 @@ export const Background = (props) => {
                                     <Link className="nav-link text-white" to="/quotation/list"><i className="fa-solid fa-hand-holding-dollar icon-link"></i> Cotizaciones</Link>
                                 </div>
                                 <div className="mt-auto pb-5 pb-lg-0 mx-auto">
-                                    <Link className="nav-link text-white" to=""><i className="fa-solid fa-gear icon-link"></i> Configuración</Link>
+                                    <Link className="nav-link text-white" to="/profile"><i className="fa-solid fa-gear icon-link"></i> Perfil</Link>
                                     <Link className="nav-link text-white" to=""><i className="fa-solid fa-right-from-bracket icon-link"></i> Cerrar Sesión</Link>
                                 </div>
                             </nav>
