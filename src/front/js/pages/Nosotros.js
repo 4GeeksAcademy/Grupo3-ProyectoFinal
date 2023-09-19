@@ -2,11 +2,8 @@ import React from 'react'
 import "../../styles/nosotros.css";
 
 const Nosotros = () => {
-    const containerStyle = {
-        backgroundColor: 'mintcream', // Set the desired background color here
-    };
     return (
-        <div className="landing-page container d-flex my-5 " style={containerStyle}>
+        <div className="landing-page container d-flex my-5 ">
             <div className="first-block d-inline-flex">
                 <div className="text-main-box d-block-flex">
                     <h1 className="title-nosotros d-flex">Acerca de FreeLancify</h1>

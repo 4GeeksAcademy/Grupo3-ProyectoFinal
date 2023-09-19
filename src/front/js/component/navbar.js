@@ -35,7 +35,7 @@ function Navbar() {
 								className="nav-links"
 								onClick={handleClick}
 							>
-								¿Quienes somos?
+								Información
 							</NavLink>
 						</li>
 						<li className="nav-item">

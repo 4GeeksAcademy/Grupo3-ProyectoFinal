@@ -30,26 +30,24 @@
     background-color: #23CFB0;
     color: #fff;
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    margin-top: 5%;
-    margin-bottom: 5%;
+    padding: 0.3rem 1rem;
+    border-radius: 2px;
 }
 
 .btn-primary:hover {
     background-color: #23CFB0;
 }
 
-.lContainer {
+.RContainer {
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
     align-items: center;
-    height: 90vh;
+    height: 108vh;
     background-image: url('https://img.freepik.com/foto-gratis/primer-plano-persona-trabajando-portatil_1232-732.jpg?w=1060&t=st=1695111524~exp=1695112124~hmac=73cf5f3084f76eb90a0b488f8ee58e6e3972e9690dcd46f532187fea488cf1dd');
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center;
     background-attachment: fixed;
     background-color: azure;
 }
@@ -68,11 +66,6 @@
     margin-right: -30px;
     border-radius: 8px;
     border: 1px solid #d8d8da;
-}
-
-.forgot-password-link {
-    margin-top: -18px;
-    margin-bottom: 15px;
 }
 
 h2 {
