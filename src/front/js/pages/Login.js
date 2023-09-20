@@ -8,8 +8,9 @@ const Login = () => {
     const { store, actions } = useContext(Context);
 
     const handleChangeLogin = (e) => {
-        actions.handleChange(e, "login");
-    };
+
+        actions.handleChange(e, "login")
+    }
 
     store.isloged ? navigate('/listProject') : null;
 

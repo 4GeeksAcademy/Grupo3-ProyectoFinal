@@ -3,13 +3,15 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/addClient.css";
+import Background from "../component/background";
 
 export const AddClient = () => {
 	const { store, actions } = useContext(Context);
 	const [saveClient, setSaveClient] = useState()
 
 	return (
-		<form className="my-form">
+		<Background>
+			<form className="my-form">
 			<div className="container">
 				<h1 className="fw-bold tx-white">Nuevo Cliente</h1>
 				<div className="baki">
@@ -65,5 +67,7 @@ export const AddClient = () => {
 				</div>
 			</div>
 		</form>
+		</Background>
+		
 	);
 };
