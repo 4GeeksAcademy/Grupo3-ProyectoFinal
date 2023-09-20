@@ -16,6 +16,17 @@
     color: #ffffff !important;
 }
 
+.project-card-title, .project-card-description{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.project-card-title{
+    color: #23CFB0;
+}
 @media (min-width: 576px) {
     .cards {
         width: 90%;
