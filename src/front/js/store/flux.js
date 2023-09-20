@@ -99,6 +99,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 				});
 			},
 
+			addClient: (data) => {
+				const token = localStorage.getItem("jwt-token")
+				const options = {
+					method: 'POST',
+					body: JSON.stringify(data),
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization':  `Bearer ${token}`
+					},
+				} 
+				fetch(process.env. BACKEND_URL + 'api/user/clients', options)
+				.then(response => response.json())
+				.then(results => console.log(results))
+				.catch(error => error)
+			},
+			editClient: (data) => {
+				const options = {
+					method: 'PUT',
+					body: JSON.stringify(data),
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				} 
+				fetch(process.env. BACKEND_URL + 'api/user/clients', options)
+				.then(response => response.json())
+				.then(results => console.log(results))
+				.catch(error => error)
+			},
+
 
 			isPropertyEmpty: (obj) => {
 				for (const key in obj) {
