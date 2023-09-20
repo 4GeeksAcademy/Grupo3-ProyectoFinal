@@ -1,29 +1,18 @@
 
-body {
+/* body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 	min-height: 100vh;
 	margin: 0;
-
-}
+} */
 
 .fo{
   background-color: #23cfb06b;
   width: 550px;
   height: 675px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-
-}
-
-h3 {
-	margin: 10px 0;
-}
-
-h6 {
-	margin: 5px 0;
-	text-transform: uppercase;
 }
 
 .kris-the-card-container {
@@ -39,49 +28,10 @@ h6 {
   margin-left: 20px;
 }
 
-.card-container .pro {
-	color: #231E39;
-	background-color: #23cfb06b;
-	border-radius: 3px;
-	font-size: 14px;
-	font-weight: bold;
-	padding: 3px 7px;
-	position: absolute;
-	top: 30px;
-	left: 30px;
-}
-.card-container .proi {
-	color: #231E39;
-	background-color: #23cfb06b;
-	border-radius: 3px;
-	font-size: 14px;
-	font-weight: bold;
-	padding: 3px 7px;
-	position: absolute;
-	top: 30px;
-	left: 30px;
-	display: inline-block;
-	margin-left: 375px;
-}
-
-.card-container .round {
+.kris-the-card-container .round {
 	border: 1px solid #03BFCB;
 	border-radius: 50%;
 	padding: 7px;
-}
-
-button.primary {
-	background-color: #23cfb06b;
-	border: 1px solid #03BFCB;
-	border-radius: 3px;
-	color: #231E39;
-	font-weight: 500;
-	padding: 10px 25px;
-}
-
-button.primary.ghost {
-	background-color: transparent;
-	color: #02899C;
 }
 
 .skills {
@@ -105,6 +55,5 @@ button.primary.ghost {
 	margin: 0 7px 7px 0;
 	padding: 7px;
   	align-items: center;
-
 }
  
