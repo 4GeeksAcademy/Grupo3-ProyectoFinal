@@ -29,9 +29,9 @@ export const ListProject = () => {
                                 <div key={project.id} className="col w-auto">
                                     <div className="card rounded-4 shadow">
                                         <div className="card-body">
-                                            <h5 className="card-title text-center">{project.name}</h5>
+                                            <h5 className="card-title text-center project-card-title" title={project.name}>{project.name}</h5>
                                             {/* <p className="card-text">{project.client_name}</p> */}
-                                            <p className="card-text">{project.description}</p>
+                                            <p className="card-text project-card-description" title={project.description}>{project.description}</p>
                                             <div className="d-flex justify-content-evenly">
                                                 <a type="button" className="btn btn-custom btn-sm text-center me-1" onClick={() => handleDelete(project.id)}>Eliminar</a>
                                                 <Link to={`/editProject/${project.id}`} className="btn btn-custom btn-sm text-center">Detalles</Link>

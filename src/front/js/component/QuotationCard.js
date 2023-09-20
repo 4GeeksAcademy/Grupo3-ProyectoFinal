@@ -24,7 +24,7 @@ let date = formatDateToDDMMYYYY(stringDate);
             <div className="col w-auto">
                 <div className="card rounded-4 shadow">
                     <div className="card-body">
-                        <h5 className="card-title text-center quotation-list-title">{props.name}</h5>
+                        <h5 className="card-title text-center quotation-list-title" title={props.name}>{props.name}</h5>
                         <div className='quotation-row'>
                         <p className="card-text quotation-card-body">{date}</p>
                         </div>

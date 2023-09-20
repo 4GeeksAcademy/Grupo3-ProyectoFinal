@@ -5,6 +5,11 @@
 
 .quotation-list-title{
     color: #23CFB0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .quotation-row{
@@ -14,4 +19,10 @@
     border-color: #F1F1F1;
     margin-bottom: 4%;
 
+}
+
+.card-body{
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 170px;
 }
