@@ -63,7 +63,6 @@ class Client(db.Model):
             "full_name": self.full_name,
             "phone": self.phone,
             "description": self.description,
-            "avatar": self.avatar,
             "address": self.address,
             "country": self.country,
             "company_name": self.company_name,

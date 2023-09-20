@@ -3,27 +3,26 @@ import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/clientInfo.css";
+import Background from "../component/background";
 
 export const ClientInfo = () => {
 	const { store, actions } = useContext(Context);
     actions.getClients()
 
 
-	return (
-            
-            
-                <div className="fo">
+	{store.clients.length == 0 ? "Cargando...": store.clients.map((item, index)=>{
+        return (
+            <Background>
+            <div className="fo">
                 <div className="card-container">
                     <Link  to={`/clientList`} className="pro">Cancelar</Link>
                     <Link  to={`/editInfo`} className="proi">Editar</Link>
                     <div>
-                     {/* {store.clients.length == 0 ? "Cargando...": store.clients.map((item, index)=>{
-                        return ()
-                    })}  */}
+                     
                         <img className="round" src="https://picsum.photos/150" alt=""/>
-                        {/* <h3>{item.full_name}</h3>
+                        <h3>{item.full_name}</h3>
                         <h6>{item.company_name}</h6>
-                        <p>{item.description}</p> */}
+                        <p>{item.description}</p>
                         <div className="buttons">
                             <button className="primary">
                                 Añadir Proyecto
@@ -44,11 +43,11 @@ export const ClientInfo = () => {
                     </div>
                 </div>
             </div>
+        </Background> 
+        )
+    })} 
+                   
             
-            
-
-            
-            
-        );
+    
     };
     

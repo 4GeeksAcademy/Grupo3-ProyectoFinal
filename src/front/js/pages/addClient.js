@@ -15,11 +15,24 @@ export const AddClient = () => {
 		address: '',
 		country: '',
 		company_name: '',
-	})
+	});
+
+	const handleChange=(e)=>{
+		setSaveClient({
+			...saveClient, 
+			[e.target.name]: e.target.value
+		})
+	};
+	
+	const handleSubmit =(e)=>{
+		e.preventDefault()
+		actions.addClient(saveClient)
+	}
 
 	return (
 		<Background>
-			<form className="kris-my-form bg-white shadow-lg rounded-4 p-2 p-md-3 p-lg-4 p-xS-5 position-absolute top-50 start-50 translate-middle">
+			<form className="kris-my-form bg-white shadow-lg rounded-4 p-2 p-md-3 p-lg-4 p-xS-5 position-absolute top-50 start-50 translate-middle" 
+			onSubmit={handleSubmit}>
 			<div className="container">
 				<div className="baki">
 					<h1 className="fs-3 pb-4 text-center"><strong>Nuevo Cliente</strong></h1>
@@ -27,7 +40,7 @@ export const AddClient = () => {
 						<img src="https://picsum.photos/150" alt=""/>
 					</div>
 					<div className="backe">
-						<select>
+						<select name="country" onChange={handleChange}>
 							<option>-- Elige un país --</option>
 							<option>Argentina</option>			
 							<option>Bolivia</option>
@@ -51,17 +64,17 @@ export const AddClient = () => {
 							<option>Otro</option>      
 						</select>
 						<div className="grid pb-2">
-							<input type="text" placeholder="Nombre de la Empresa" ></input>
+							<input type="text" placeholder="Nombre de la Empresa" name="company_name"  onChange={handleChange}></input>
 						</div>
 						<div className="grid grid-2 pb-2">
-							<input type="text" placeholder="Nombre Completo *" required></input>
-							<input type="text" placeholder="Correo Electrónico *" required></input>
+							<input type="text" name="full_name"  placeholder="Nombre Completo *" required onChange={handleChange}></input>
+							<input type="text" name="email" placeholder="Correo Electrónico *" required onChange={handleChange}></input>
 						</div>
 						<div className="grid grid-2 pb-2">
-							<input type="text" placeholder="Número Telefónico *" required></input>
-							<input type="text" placeholder="Residencia"></input>
+							<input type="text" name="phone" placeholder="Número Telefónico *" required onChange={handleChange}></input>
+							<input type="text" name="address" placeholder="Residencia" onChange={handleChange}></input>
 						</div>
-						<textarea placeholder="Descripción de cliente"></textarea>
+						<textarea name="description" placeholder="Descripción de cliente" onChange={handleChange}></textarea>
 						<div className="grid grid-3 pb-2">
 							<div className="required-msg" required>Campos requeridos *</div>
 								<button className="btn-grid" type="submit">

@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-* {
-	box-sizing: border-box;
-}
+
 
 body {
 	display: flex;

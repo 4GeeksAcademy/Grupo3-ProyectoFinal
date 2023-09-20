@@ -7,6 +7,8 @@ from api.models import db, User, Quotation, Client, Task, Project
 from api.utils import generate_sitemap, APIException
 from datetime import time
 from sqlalchemy.exc import IntegrityError
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import get_jwt_identity
 api = Blueprint('api', __name__)
 
 
@@ -38,8 +40,14 @@ def get_client_id(clients_id):
 
   
 @api.route('/user/clients', methods=['POST'])
+@jwt_required()
 def post_client():
     body = request.get_json(silent=True)
+    user_id = get_jwt_identity()
+    description = ""
+    address = ""
+    country = ""
+    company_name = ""
     if body is None:
         raise APIException("Debes enviar información en el body", status_code=400)
     if "full_name" not in body:
@@ -48,11 +56,15 @@ def post_client():
         raise APIException("Debes enviar el correo electrónico del cliente", status_code=400)
     if "phone" not in body:
         raise APIException("Debes enviar el número de teléfono del cliente", status_code=400)
-    if "address" not in body:
-        raise APIException("Debes enviar la dirección del cliente", status_code=400)
-    if "company_name" not in body:
-        raise APIException("Debes enviar el nombre de la empresa del cliente", status_code=400)
-    new_client = Client(full_name = body['full_name'], email = body['email'], phone = body['phone'], address = body['address'], company_name = body['company_name'], is_active = True)
+    if "description" in body:
+        description = body['description']
+    if "address" in body:
+        address = body['address']
+    if "country" in body:
+        country = body['country']
+    if "company_name" in body:
+        company_name: body["company_name"]
+    new_client = Client(user_id = user_id, full_name = body['full_name'], email = body['email'], phone = body['phone'], address = address,  company_name = company_name, description = description, country = country)
     db.session.add(new_client)
     db.session.commit()
     return jsonify({"msg": "Se ha creado el cliente", "new_client_info": new_client.serialize()})
