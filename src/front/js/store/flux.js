@@ -427,8 +427,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						...updatedData
 					}
 				});
-			}
+			},
 
+			logOut: () => {
+				localStorage.removeItem("jwt-token");
+				setStore({ isloged: false });
+			}
 		}
 	};
 };
