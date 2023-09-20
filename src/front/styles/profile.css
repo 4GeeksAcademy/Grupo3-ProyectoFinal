@@ -9,3 +9,9 @@
     margin-bottom: 10px;
     border-radius: 5px;
 }
+
+.profile-card {
+    width: 350px;
+    /* Ancho deseado de la tarjeta */
+    /* Otros estilos */
+}

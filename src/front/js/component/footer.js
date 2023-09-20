@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
-		<p>
-			Made with <i className="fa fa-heart text-danger" /> by{" "}
-			<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
-		</p>
+	<footer className='text-center text-white'>
+
+		<div className='text-center p-3' style={{ backgroundColor: 'white', color: 'black' }}>
+			© {new Date().getFullYear()} Copyright:
+			<a className='text-black'>
+				FreeLancify.com
+			</a>
+		</div>
 	</footer>
 );

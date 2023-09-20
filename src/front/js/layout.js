@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
-import { Home } from "./pages/home";
+import Home from "./pages/home";
 import CreateQuotation from "./pages/CreateQuotation";
 import { ListQuotations } from "./pages/ListQuotations";
 import Register from "./pages/Register";
@@ -18,6 +18,9 @@ import { ClientInfo } from "./pages/clientInfo";
 import { EditInfo } from "./pages/editInfo";
 import { AddClient } from "./pages/addClient";
 import injectContext from "./store/appContext";
+import { Footer } from "./component/footer";
+import Navbar from "./component/navbar";
+import Nosotros from "./pages/Nosotros";
 
 //create your first component here
 const Layout = () => {
@@ -31,18 +34,16 @@ const Layout = () => {
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
-                    {/* <Navbar /> */}
+                    <Navbar />
                     <Routes>
                         {/* <Route element={<Home />} path="/" /> */}
-                        <Route element={<Login />} path="/" /> 
+                        <Route element={<Home />} path="/" />
                         <Route element={<CreateQuotation />} path="/quotation/create" />
                         <Route element={<ListQuotations />} path="/quotation/list" />
                         <Route element={<Register />} path="/register" />
-
                         <Route element={<Login />} path="/login" />
                         <Route element={<Profile />} path="/profile" />
-
-
+                        <Route element={<Nosotros />} path="/nosotros" />
                         <Route element={<ResetPasswordRequest />} path="/reset_password_request" />
                         <Route element={<ResetPasswordToken />} path="/update-password" />
                         <Route element={<CreateProject />} path="/createProject" />
@@ -54,7 +55,7 @@ const Layout = () => {
                         <Route element={<EditInfo />} path="/editInfo" />   
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
-                    {/* <Footer /> */}
+                    <Footer />
                 </ScrollToTop>
             </BrowserRouter>
         </div>
