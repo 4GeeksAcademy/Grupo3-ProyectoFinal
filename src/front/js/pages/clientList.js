@@ -11,18 +11,15 @@ import { Context } from "../store/appContext";
 
 export const ClientList = () => {
 	const { store, actions } = useContext(Context);
-	
-	const deleteThem = (client_id) => {
-		actions.deleteClients(client_id);
-	};
 
 	useEffect(() => {
-	
  	actions.getClients();	
-	
 	}, []);
-	
 
+	const deleteThem = (clientId) => {
+		actions.deleteClients(clientId);
+	};
+	
 	return (
 		
 		<Background>
@@ -30,18 +27,15 @@ export const ClientList = () => {
 			<div className="bar">
 				<div className="container">
 					<div className="back">
-						<div className="col d-flex justify-content-end">
-							<Link  to={`/addClient`} className="btn btn-info d-flex justify-content-end text-white">Agregar <FontAwesomeIcon icon={faPlus} className="add-icon" />	</Link>
+						<div className="lagre col d-flex justify-content-end">
+							<Link  to={`/addClient`} className="btn btn-custom btn-sm mb-2 mb-md-3 me-2 justify-content-end text-white">Agregar <FontAwesomeIcon icon={faPlus} className="add-icon" />	</Link>
 						</div>
 					</div>
 				</div>
 				<div className="container">
-					<div className="clientes-tit">
+					<div className="null">
 						<div className="row">
-							<div className="col"><strong>Clientes</strong></div>
-							<div className="col">
-									<input id="search" type="search" placeholder="Search..."  required />
-							</div>
+							<div className="col fs-1 mb-0 ms-1 pt-0 pt-md-2 pt-lg-3"><strong>Clientes</strong></div>
 						</div>
 					</div>
 
@@ -52,11 +46,11 @@ export const ClientList = () => {
 								<thead>
 									<tr>
 									<th scope="col"><FontAwesomeIcon icon={faImage} className="add-icon" /></th>
-									<th scope="col">Nombre</th>
+									<th scope="col"><font color="#23CFB0">Nombre del cliente</font></th>
 									</tr>
 								</thead>
 								<tbody>
-									{store.clients.length == 0 ? "Cargando": store.clients.map((item, index)=>{
+									{store.clients.length == 0 ? "Ups... No existen clientes :(": store.clients.map((item, index)=>{
 										return (
 										<tr>
 											<th className="image-porfi" scope="row"><img src="https://picsum.photos/150" alt=""/></th>
