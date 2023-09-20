@@ -34,10 +34,10 @@ export const ClientInfo = () => {
                         <div className="skills">
                             <h6>Información de cliente</h6>
                             <ul>
-                                {/* <li>{item.address}</li>
+                                <li>{item.address}</li>
                                 <li>{item.country}</li>
                                 <li>{item.phone}</li>
-                                <li>{item.email}</li> */}
+                                <li>{item.email}</li> 
                             </ul>
                         </div>
                     </div>
