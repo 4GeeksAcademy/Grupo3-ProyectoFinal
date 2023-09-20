@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { Context } from '../store/appContext';
+import "../../styles/updatePassword.css";
 
 const ResetPasswordToken = () => {
     const { actions } = useContext(Context);
@@ -26,9 +27,10 @@ const ResetPasswordToken = () => {
             alert('No se encontró ninguna cuenta asociada a ese correo.');
         }
     };
+
     return (
-        <div className="container">
-            <h2>Restablecimiento de Contraseña</h2>
+        <div className="container" id="resetPasswordTokenContainer">
+            <h2 id="resetPasswordTokenTitle">Restablecimiento de Contraseña</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Nueva Contraseña</label>
@@ -50,7 +52,7 @@ const ResetPasswordToken = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="btn btn-primary">Restablecer Contraseña</button>
+                <button type="submit" className="btn btn-primary" id="btn-updatePassword">Restablecer Contraseña</button>
             </form>
             <Link to="/login">Volver a Iniciar Sesión</Link>
         </div>

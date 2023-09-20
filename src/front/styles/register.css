@@ -26,16 +26,12 @@
     border-radius: 4px;
 }
 
-#btn-primary {
+#btn-register {
     background-color: #23CFB0;
     color: #fff;
     border: none;
     padding: 0.3rem 1rem;
     border-radius: 2px;
-}
-
-#btn-primary:hover {
-    background-color: #23CFB0;
 }
 
 #RContainer {

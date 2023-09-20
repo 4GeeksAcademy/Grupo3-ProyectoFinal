@@ -192,7 +192,7 @@ def reset_password_request():
         db.session.commit()
         msg = Message(subject='Restablecimiento de Contraseña',
                       sender='ruizcaro72@gmail.com', recipients=[email])
-        reset_link = f'https://cautious-space-barnacle-p4rwxgvj6gwf7rq9-3000.app.github.dev/update-password/?token={reset_token}'
+        reset_link = f'{os.getenv("FRONTEND_URL")}/update-password/?token={reset_token}'
         msg.body = f'Haga clic en el siguiente enlace para restablecer su contraseña: {reset_link}'
         mail.send(msg)
 
