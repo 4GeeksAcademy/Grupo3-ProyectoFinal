@@ -48,7 +48,7 @@ const Login = () => {
                             <Link to="/reset_password_request">¿Olvidó su contraseña?</Link>
                         </div>
                         <div style={{ textAlign: 'center' }}>
-                            <button type="submit" className="btn btn-primary">
+                            <button type="submit" className="btn btn-primary" id="btn-login">
                                 Iniciar Sesión
                             </button>
                         </div>

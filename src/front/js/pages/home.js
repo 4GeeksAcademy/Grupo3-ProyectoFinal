@@ -11,7 +11,7 @@ const Home = () => {
 				<div className="box-content">
 					<h2 className="box-title">Bienvenido a FreeLancify</h2>
 					<p className="box-description">La plataforma perfecta para freelancers</p>
-					<button className="btn custom-button btn-primary"><Link to="/register" id="linkRegister">Registrarse</Link></button>
+					<button className="btn custom-button btn-primary" id ="btn-home"><Link to="/register" id="linkRegister">Registrarse</Link></button>
 				</div>
 			</div>
 			<img src={backgroundImageUrl} alt="Fondo" className="background-image" />

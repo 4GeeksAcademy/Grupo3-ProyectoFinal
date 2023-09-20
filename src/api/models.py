@@ -12,7 +12,7 @@ class User(db.Model):
     phone = db.Column(db.String(20), unique=True, nullable=True)
     country = db.Column(db.String(15), unique=False, nullable=True)
     about_me = db.Column(db.String(250), unique=False, nullable=True)
-    reset_token = db.Column(db.String(300), unique=True, nullable=True)
+    reset_token = db.Column(db.String(600), unique=True, nullable=True)
 
     def __repr__(self):
         return f'<User {self.email}>'

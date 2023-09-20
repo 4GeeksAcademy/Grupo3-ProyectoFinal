@@ -166,7 +166,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					if (response.ok) {
 						localStorage.setItem("jwt-token", result.token);
-						alert("Login success");
 						setStore({ isloged: true });
 						return true;
 					} else {

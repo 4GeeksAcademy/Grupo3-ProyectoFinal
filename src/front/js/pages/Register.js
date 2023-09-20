@@ -72,7 +72,7 @@ const Register = () => {
                             />
                         </div>
                         <div style={{ textAlign: 'center' }}>
-                            <button type="submit" className="btn btn-primary">
+                            <button type="submit" className="btn btn-primary" id="btn-register">
                                 Registrarse
                             </button>
                         </div>
