@@ -4,7 +4,6 @@ import { Background } from "../component/background";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import QuotationInputs from "../component/QuotationInputs";
-import { IVA } from '/workspaces/Grupo3-ProyectoFinal/src/front/js/config.js';
 import { Link } from "react-router-dom";
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import "../../styles/createQuotation.css";
@@ -54,7 +53,7 @@ const CreateQuotation = () => {
     subtotalResult = Math.round((subtotalTemp + Number(updatedTask.task_price)) * 100) / 100;
 
     setSubtotal(subtotalResult);
-    let iva = Math.round((subtotalResult * IVA) * 100) / 100;
+    let iva = Math.round((subtotalResult * 0.13) * 100) / 100;
     setIvaAmount(iva);
 
     let totalResult = Math.round((subtotalResult + iva) * 100) / 100;
