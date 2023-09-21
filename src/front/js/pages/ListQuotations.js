@@ -9,11 +9,12 @@ import "../../styles/listQuotation.css";
 export const ListQuotations = () => {
 
     const { store, actions } = useContext(Context);
+
     useEffect(() => {
         console.log(actions)
         actions.getQuotations();
     }, []);
-   
+
     return (
         <>
             <Background>
@@ -31,7 +32,7 @@ export const ListQuotations = () => {
                         {
                             store.quotations && store.quotations.map((quotation,index)=>{
                                 return (
-                                    <QuotationCard key={index} name={quotation.project_proposal_name} date={quotation.date} leadName={quotation.lead_name} total={quotation.total}></QuotationCard>
+                                    <QuotationCard key={index} name={quotation.project_proposal_name} date={quotation.date} leadName={quotation.lead_name} quotationId={quotation.id} total={quotation.total}></QuotationCard>
                                 )
                             })
                         }
