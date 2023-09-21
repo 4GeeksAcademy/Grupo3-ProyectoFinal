@@ -44,8 +44,14 @@ def get_client_id(clients_id):
 
   
 @api.route('/user/clients', methods=['POST'])
+@jwt_required()
 def post_client():
     body = request.get_json(silent=True)
+    user_id = get_jwt_identity()
+    description = ""
+    address = ""
+    country = ""
+    company_name = ""
     if body is None:
         raise APIException("Debes enviar información en el body", status_code=400)
     if "full_name" not in body:
@@ -54,39 +60,59 @@ def post_client():
         raise APIException("Debes enviar el correo electrónico del cliente", status_code=400)
     if "phone" not in body:
         raise APIException("Debes enviar el número de teléfono del cliente", status_code=400)
-    if "address" not in body:
-        raise APIException("Debes enviar la dirección del cliente", status_code=400)
-    if "company_name" not in body:
-        raise APIException("Debes enviar el nombre de la empresa del cliente", status_code=400)
-    new_client = Client(full_name = body['full_name'], email = body['email'], phone = body['phone'], address = body['address'], company_name = body['company_name'], is_active = True)
+    if "description" in body:
+        description = body['description']
+    if "address" in body:
+        address = body['address']
+    if "country" in body:
+        country = body['country']
+    if "company_name" in body:
+        company_name: body["company_name"]
+    new_client = Client(user_id = user_id, full_name = body['full_name'], email = body['email'], phone = body['phone'], address = address,  company_name = company_name, description = description, country = country)
     db.session.add(new_client)
     db.session.commit()
     return jsonify({"msg": "Se ha creado el cliente", "new_client_info": new_client.serialize()})
 
   
 @api.route('/user/clients', methods=['PUT'])
+@jwt_required()
 def modify_clients():
     body = request.get_json(silent = True)
+    user_id = get_jwt_identity()
     if "full_name" not in body:
         raise APIException("Debes enviar el nombre completo del cliente a modificar", status_code=400)
     if "email" not in body:
         raise APIException("Debes enviar el correo electrónico del cliente a modificar", status_code=400)
     if "phone" not in body:
         raise APIException("Debes enviar el número de teléfono del cliente a modificar", status_code=400)
-    if "address" not in body:
-        raise APIException("Debes enviar la dirección del cliente a modificar", status_code=400)
-    if "company_name" not in body:
-        raise APIException("Debes enviar el nombre de la empresa del cliente a modificar", status_code=400)
+    if "description" in body:
+        description = body['description']
+    if "address" in body:
+        address = body['address']
+    if "country" in body:
+        country = body['country']
+    if "company_name" in body:
+        company_name: body["company_name"]
+        changedClient = Client(user_id = user_id, full_name = body['full_name'], email = body['email'], phone = body['phone'], address = address,  company_name = company_name, description = description, country = country)
+    db.session.add(changedClient)
+    db.session.commit()
     return jsonify({"msg": 'Completed'})
 
 
 @api.route('user/clients', methods=['DELETE'])
 def delete_clients(client_id):
-    single_client=Client.query.get(client_id)
-    if single_client is None:
-        raise APIException("El cliente no existe", status_code=400)
-    db.session.delete(single_client)
-    db.session.commit()
+    try:
+        client = Client.query.get(client_id)
+        if not client:
+            return jsonify({"msg": "El cliente no se fue encontrado"}), 404
+        db.session.delete(client)
+        db.session.commit()
+
+    except Exception as error:
+        db.session.rollback()
+        return jsonify({"msg": f"Ocurrió un error al eliminar el cliente, por favor intente de nuevo: {error}"}), 500
+    
+    return jsonify({"msg": "Cliente eliminado con éxito"}), 200
 
 
 @api.route('/quotation/get', methods=['GET'])
@@ -155,6 +181,33 @@ def create_quotation():
         db.session.rollback()
         return jsonify({"error": "Error de servidor"}), 500
 
+@api.route('/quotation/<int:quotation_id>', methods=['DELETE'])
+@jwt_required()
+def delete_quotation(quotation_id):
+    user_id = get_jwt_identity()
+    try:
+        quotation = Quotation.query.get(quotation_id)
+
+        if not quotation:
+            return jsonify({"msg": "La cotización no se encontró"}), 404
+
+        if quotation.user_id != user_id:
+            return jsonify({"msg": "No tienes permiso para eliminar esta cotización"}), 403
+
+        tasks = Task.query.filter_by(quotation_id = quotation_id)
+        
+        for task in tasks:
+            db.session.delete(task)
+            db.session.commit()
+
+        db.session.delete(quotation)
+        db.session.commit()
+
+    except Exception as error:
+        db.session.rollback()
+        return jsonify({"msg": f"Error al eliminar la cotización: {error}"}), 500
+
+    return jsonify({"msg": "Cotización eliminada con éxito"}), 200
  
 @api.route('projects', methods=['GET'])
 @jwt_required()

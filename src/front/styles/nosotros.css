@@ -1,9 +1,7 @@
 body {
     background-color: whitesmoke;
     margin: 0;
-    /* Remove default body margin */
     padding: 0;
-    /* Remove default body padding */
 }
 
 .title-nosotros {

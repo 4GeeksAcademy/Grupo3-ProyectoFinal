@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import "../../styles/quotationCard.css"
+import { Context } from "../store/appContext";
 
 const QuotationCard = (props) => {
     
@@ -19,12 +20,20 @@ function formatDateToDDMMYYYY(originalString) {
 let stringDate = props.date;
 let date = formatDateToDDMMYYYY(stringDate);
 
+const { store, actions } = useContext(Context);
+
+
+
+const handleDelete = (quotationId) => {
+    actions.deleteQuotation(quotationId);
+};
+
     return (
         <>
             <div className="col w-auto">
                 <div className="card rounded-4 shadow">
                     <div className="card-body">
-                        <h5 className="card-title text-center quotation-list-title">{props.name}</h5>
+                        <h5 className="card-title text-center quotation-list-title" title={props.name}>{props.name}</h5>
                         <div className='quotation-row'>
                         <p className="card-text quotation-card-body">{date}</p>
                         </div>
@@ -35,7 +44,7 @@ let date = formatDateToDDMMYYYY(stringDate);
                         <p className="card-text quotation-card-body">{props.total}</p>
                         </div>
                         <div className="d-flex justify-content-evenly">
-                            <a type="button" className="btn btn-custom btn-sm text-center me-1">Eliminar</a>
+                            <a type="button" className="btn btn-custom btn-sm text-center me-1" onClick={() =>{handleDelete(props.quotationId)}}>Eliminar</a>
                             <a type="button" className="btn btn-custom btn-sm text-center">Detalles</a>
                         </div>
                     </div>

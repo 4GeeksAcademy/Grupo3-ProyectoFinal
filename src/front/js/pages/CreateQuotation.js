@@ -8,6 +8,7 @@ import { IVA } from '/workspaces/Grupo3-ProyectoFinal/src/front/js/config.js';
 import { Link } from "react-router-dom";
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import "../../styles/createQuotation.css";
+import Swal from 'sweetalert2';
 
 const CreateQuotation = () => {
   const [lead, setLeadName] = useState("");
@@ -17,7 +18,6 @@ const CreateQuotation = () => {
   const [ivaAmount, setIvaAmount] = useState(0);
   const [total, setTotal] = useState(0);
   const {  actions } = useContext(Context);
-  const [showAlert, setShowAlert] = useState(false);
 
 
   let pricePerHour = 30;
@@ -62,20 +62,12 @@ const CreateQuotation = () => {
     setTotal(totalString);
   };
 
-  useEffect(() => {
-    let timer;
-    if (showAlert) {
-      timer = setTimeout(() => {
-        setShowAlert(false);
-      }, 3000);  
-    }
-    return () => {
-      clearTimeout(timer);  
-    };
-  }, [showAlert]); 
+
 
   const saveQuotation = () => {
-    actions.postQuotationData(tasksArray,lead,project,total,() => setShowAlert(true));
+    actions.postQuotationData(tasksArray,lead,project,total,() => {
+      Swal.fire("Éxito", "La cotización se ha guardado exitosamente!", "success");
+    });
 
   }
 
@@ -134,11 +126,6 @@ const CreateQuotation = () => {
 
           <div>
             <button type="button" className="btn btn-info app-button" onClick={() => saveQuotation()}>Guardar</button>
-            {showAlert && (
-            <div className="alert alert-success" role="alert">
-               La cotización se ha guardado exitosamente!
-             </div>
-            )}
 
           </div>
 
