@@ -69,7 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 			},
 			getClientsById: (id) => {
-				fetch(process.env.BACKEND_URL + `api/user/clients/${id}`)
+				fetch(process.env.BACKEND_URL + `/api/user/clients/${id}`)
 					.then((response) => response.json())
 					.then((data) => {
 						setStore({ clients: data.clients })
@@ -81,7 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getClientById: async (id) => {
 				try {
 					const token = localStorage.getItem("jwt-token");
-					const response = await fetch(process.env.BACKEND_URL + `api/user/clients/${id}`, {
+					const response = await fetch(process.env.BACKEND_URL + `/api/user/clients/${id}`, {
 						method: 'GET',
 						headers: {
 							'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}).then(async (result) => {
 					if (result.isConfirmed) {
 						try {
-							const response = await fetch(process.env.BACKEND_URL + `api/user/clients/${clientId}`, {
+							const response = await fetch(process.env.BACKEND_URL + `/api/user/clients/${clientId}`, {
 								method: 'DELETE',
 							});
 							if (response.ok) {
@@ -149,7 +149,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						'Authorization': `Bearer ${token}`
 					},
 				}
-				fetch(process.env.BACKEND_URL + 'api/user/clients', options)
+				fetch(process.env.BACKEND_URL + '/api/user/clients', options)
 					.then(response => response.json())
 					.then(results => console.log(results))
 					.catch(error => error)
@@ -165,7 +165,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						'Authorization':  `Bearer ${token}`
 					},
 				} 
-				fetch(process.env. BACKEND_URL + `api/user/clients/${id}`, options)
+				fetch(process.env. BACKEND_URL + `/api/user/clients/${id}`, options)
 				.then(response => response.json())
 				.then(results => console.log(results))
 				.catch(error => error)
@@ -357,7 +357,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							},
 						};
 
-						fetch(`${process.env.BACKEND_URL}api/quotation/${quotationId}`, options)
+						fetch(`${process.env.BACKEND_URL}/api/quotation/${quotationId}`, options)
 							.then(response => {
 								if(response.status==401){
 									throw new Error('La sesión ha expirado');
@@ -450,7 +450,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Authorization": `Bearer ${token}`
 					}
 				};
-				fetch(process.env.BACKEND_URL + "api/projects", requestOptions)
+				fetch(process.env.BACKEND_URL + "/api/projects", requestOptions)
 					.then(response => response.json())
 					.then(data => setStore({ projects: data["projects"] }))
 					.catch(error => console.log("Error al obtener proyectos:", error));
@@ -459,7 +459,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getProjectById: async (id) => {
 				try {
 					const token = localStorage.getItem("jwt-token");
-					const response = await fetch(process.env.BACKEND_URL + `api/project/${id}`, {
+					const response = await fetch(process.env.BACKEND_URL + `/api/project/${id}`, {
 						method: 'GET',
 						headers: {
 							'Content-Type': 'application/json',
@@ -493,7 +493,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}),
 				};
 				try {
-					const response = await fetch(process.env.BACKEND_URL + "api/project/create", requestOptions)
+					const response = await fetch(process.env.BACKEND_URL + "/api/project/create", requestOptions)
 					const data = await response.json();
 					if (data.msg === 'Se ha creado el proyecto con éxito') {
 						Swal.fire("Éxito", data.msg, "success");
@@ -517,7 +517,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}).then(async (result) => {
 					if (result.isConfirmed) {
 						try {
-							const response = await fetch(process.env.BACKEND_URL + `api/project/${projectId}`, {
+							const response = await fetch(process.env.BACKEND_URL + `/api/project/${projectId}`, {
 								method: 'DELETE',
 							});
 							if (response.ok) {
@@ -545,7 +545,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(projectDetails)
 				};
 				try {
-					const response = await fetch(process.env.BACKEND_URL + `api/project/${id}`, requestOptions);
+					const response = await fetch(process.env.BACKEND_URL + `/api/project/${id}`, requestOptions);
 					const data = await response.json();
 					if (response.status === 200) {
 						Swal.fire("Éxito", data.msg, "success");
