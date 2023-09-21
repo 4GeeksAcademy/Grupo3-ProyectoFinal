@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import Background from "../component/background";
 import "../../styles/createProject.css";
@@ -6,8 +6,12 @@ import "../../styles/createProject.css";
 export const CreateProject = () => {
     const { store, actions } = useContext(Context);
 
+    useEffect(() => {
+        actions.getClients();
+    }, []);
+
     const [projectData, setProjectData] = useState({
-        client: '',
+        clientId: '',
         projectName: '',
         projectDescription: '',
         startDate: '',
@@ -24,7 +28,7 @@ export const CreateProject = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        actions.postProjectRegister(projectData.client, projectData.projectName, projectData.projectDescription, projectData.startDate, projectData.endDate, projectData.hourPrice)
+        actions.postProjectRegister(projectData.clientId, projectData.projectName, projectData.projectDescription, projectData.startDate, projectData.endDate, projectData.hourPrice)
     };
 
     return (
@@ -35,11 +39,13 @@ export const CreateProject = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="pb-2">
                             <label htmlFor="client" className="form-label">Cliente asociado al proyecto</label>
-                            <select className="form-select" id="client" name="client" onChange={handleChange}>
+                            <select className="form-select" id="clientId" name="clientId" onChange={handleChange}>
                                 <option value="">Selecciona el cliente asociado a tu proyecto</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                {store.clients.map((client) => {
+                                    return (
+                                        <option key={client.id} value={client.id}>{client.full_name}</option>
+                                    )
+                                })}
                             </select>
                         </div>
                         <div className="pb-2">

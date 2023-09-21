@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			signup: false,
 			isloged: false,
 			message: null,
+			userName: '',
 			user_data: {
 				name: null,
 				last_name: null,
@@ -17,8 +18,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				password: null
 			},
 			current_user: {},
+			clientData: {
+				full_name: ""
+			},
 			projectData: {
-				client: "",
+				clientId: "",
 				projectName: "",
 				projectDescription: "",
 				startDate: "",
@@ -48,13 +52,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getClients: () => {
-				fetch(process.env.BACKEND_URL + "/api/user/clients")
+				const token = localStorage.getItem("jwt-token");
+				const requestOptions = {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${token}`
+					}
+				};
+				fetch(process.env.BACKEND_URL + "/api/user/clients", requestOptions)
 					.then((response) => response.json())
 					.then((data) => {
 						setStore({ clients: data.clients })
 					}).catch((error) => {
 						console.log(error);
 					})
+			},
+
+			getClientById: async (id) => {
+				try {
+					const token = localStorage.getItem("jwt-token");
+					const response = await fetch(process.env.BACKEND_URL + `api/user/clients/${id}`, {
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': `Bearer ${token}`
+						}
+					});
+					const data = await response.json();
+					if (data.full_name) {
+						setStore({ clientData: data })
+					}
+				} catch (error) {
+					console.log("Error al obtener proyecto:", error);
+				}
 			},
 
 			// deleteClients: () => {
@@ -200,9 +231,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					const result = await response.json()
-					console.log(result);
-
+					
 					if (response.ok) {
+						setStore({ userName: result.name +" "+ result.last_name })
 						localStorage.setItem("jwt-token", result.token);
 						setStore({ isloged: true });
 						return true;
@@ -399,11 +430,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getProjects: () => {
+				const token = localStorage.getItem("jwt-token");
 				const requestOptions = {
 					method: "GET",
 					headers: {
-						"Content-Type": "application/json"
-						// Authorization: "Bearer " + getStore().token
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${token}`
 					}
 				};
 				fetch(process.env.BACKEND_URL + "api/projects", requestOptions)
@@ -414,7 +446,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getProjectById: async (id) => {
 				try {
-					const response = await fetch(process.env.BACKEND_URL + `api/project/${id}`);
+					const token = localStorage.getItem("jwt-token");
+					const response = await fetch(process.env.BACKEND_URL + `api/project/${id}`, {
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': `Bearer ${token}`
+						}
+					});
 					const data = await response.json();
 					if (data.project) {
 						setStore({ projectData: data.project });
@@ -424,18 +463,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			postProjectRegister: async (client, projectName, projectDescription, startDate, endDate, hourPrice) => {
+			postProjectRegister: async (clientId, projectName, projectDescription, startDate, endDate, hourPrice) => {
+				const token = localStorage.getItem("jwt-token");
 				const requestOptions = {
 					method: "POST",
-					headers: { "Content-Type": "application/json" },
+					headers: {
+						"Content-Type": "application/json",
+						'Authorization': `Bearer ${token}`
+					},
 					body: JSON.stringify({
-						client_id: client,
+						client_id: clientId,
 						name: projectName,
 						description: projectDescription,
 						Date: startDate,
 						deadline: endDate,
 						hour_price: hourPrice
-					})
+					}),
 				};
 				try {
 					const response = await fetch(process.env.BACKEND_URL + "api/project/create", requestOptions)

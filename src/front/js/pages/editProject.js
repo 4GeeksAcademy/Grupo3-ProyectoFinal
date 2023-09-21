@@ -10,12 +10,16 @@ export const EditProject = () => {
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
-        const project = actions.getProjectById(id);
+        actions.getProjectById(id)
+            .then(() => {
+                if (store.projectData.client_id) {
+                    actions.getClientById(store.projectData.client_id);
+                }
+            });
     }, [id]);
 
     const handleSave = () => {
         actions.updateProject(id, store.projectData);
-        console.log(store.projectData)
         setIsEditing(false);
     };
 
@@ -44,11 +48,13 @@ export const EditProject = () => {
                             {isEditing ?
                                 <><select className="bg-color rounded-3" value={store.projectData.client} onChange={(e) => handleInputChange('client', e.target.value)}>
                                     <option value="">Selecciona el cliente</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    {store.clients.map((client) => {
+                                        return (
+                                            <option key={client.id} value={client.full_name}>{client.full_name}</option>
+                                        )
+                                    })}
                                 </select></> :
-                                <span className="bg-color rounded-3 px-2 px-md-3 py-1">{store.projectData.client}</span>}
+                                <span className="bg-color rounded-3 px-2 px-md-3 py-1">{store.clientData.full_name}</span>}
                         </div>
                     </div>
                     <div className="row border rounded-4 mb-2 py-2">
@@ -94,7 +100,7 @@ export const EditProject = () => {
                     <div className="text-end">
                         {isEditing ?
                             <button type="button" className="btn btn-custom btn-sm" onClick={handleSave}>Guardar</button> :
-                            <button type="button" className="btn btn-custom btn-sm" onClick={() => setIsEditing(true)}>Editar</button>}
+                            <button type="button" className="btn btn-custom btn-sm" onClick={() => { setIsEditing(true); actions.getClients(); }}>Editar</button>}
                     </div>
                 </div>
             </Background>

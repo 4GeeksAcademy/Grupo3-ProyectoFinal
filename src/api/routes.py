@@ -8,8 +8,7 @@ import datetime
 from api.utils import generate_sitemap, APIException
 from datetime import time
 from sqlalchemy.exc import IntegrityError
-from flask_jwt_extended import jwt_required
-from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity
 api = Blueprint('api', __name__)
 
 
@@ -24,14 +23,18 @@ def handle_hello():
 
 
 @api.route('/user/clients', methods = ['GET'])
+@jwt_required()
 def get_clients():
-    clients = Client.query.all()
+    user_id = get_jwt_identity()
+    clients = Client.query.filter_by(user_id=user_id).all()
+    # clients = Client.query.all()
     serialized_clients= list(map(lambda x: x.serialize(), clients))
     db.session.commit()
     return jsonify({"msg": "Completado", "clients": serialized_clients}), 200
 
   
 @api.route('/user/clients/<int:clients_id>', methods = ['GET'])
+@jwt_required()
 def get_client_id(clients_id):
     single_client = Client.query.get(clients_id)
     if single_client is None:
@@ -207,9 +210,11 @@ def delete_quotation(quotation_id):
     return jsonify({"msg": "Cotización eliminada con éxito"}), 200
  
 @api.route('projects', methods=['GET'])
+@jwt_required()
 def get_projects():
+    user_id = get_jwt_identity()
     try:
-        projects = Project.query.all()
+        projects = Project.query.filter_by(user_id=user_id).all()
         serialized_projects = [project.serialize() for project in projects]
 
     except Exception as error:
@@ -224,6 +229,7 @@ def get_projects():
 
 
 @api.route('/project/<int:project_id>', methods=['GET'])
+@jwt_required()
 def get_project_details(project_id):
     try:
         project = Project.query.get(project_id)
@@ -235,9 +241,10 @@ def get_project_details(project_id):
 
 
 @api.route('/project/create', methods=['POST'])
+@jwt_required()
 def create_project():
     body = request.get_json(silent=True)
-
+    print(body)
     if body is None:
         return jsonify({
             "msg": "La petición requiere que envíes un Json"
@@ -247,9 +254,10 @@ def create_project():
     for field in required_fields:
         if field not in body:
             return jsonify({"msg": f"El campo {field} es requerido"})
-
     try:
         project = Project(
+            user_id=get_jwt_identity(),
+            client_id=body["client_id"],
             name=body["name"],
             description=body["description"],
             Date=datetime.date.fromisoformat(body["Date"]),
