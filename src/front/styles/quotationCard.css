@@ -1,0 +1,28 @@
+.quotation-card-body{
+    margin-left: 9%;
+    font-size: 14px;
+}
+
+.quotation-list-title{
+    color: #23CFB0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.quotation-row{
+    border-radius: 8px;
+    border: solid;
+    border-width: 2px;
+    border-color: #F1F1F1;
+    margin-bottom: 4%;
+
+}
+
+.card-body{
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 170px;
+}

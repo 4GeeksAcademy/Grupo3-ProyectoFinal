@@ -1,0 +1,17 @@
+.subrayado-bold {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.label-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.profile-card {
+    width: 350px;
+    /* Ancho deseado de la tarjeta */
+    /* Otros estilos */
+}

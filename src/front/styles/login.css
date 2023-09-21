@@ -1,0 +1,74 @@
+/* styles.css */
+
+#RegistroUsuarioDiv {
+    height: 35rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#tituloRegistro {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #d8d8da;
+    border-radius: 4px;
+}
+
+#btn-login {
+    background-color: #23CFB0;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+#lContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    height: 90vh;
+    background-image: url('https://img.freepik.com/foto-gratis/primer-plano-persona-trabajando-portatil_1232-732.jpg?w=1060&t=st=1695111524~exp=1695112124~hmac=73cf5f3084f76eb90a0b488f8ee58e6e3972e9690dcd46f532187fea488cf1dd');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-color: azure;
+}
+
+#lItem {
+    width: 310px;
+}
+
+#loginForm {
+    background-color: white;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    margin-top: -60px;
+    margin-left: -30px;
+    margin-right: -30px;
+    border-radius: 8px;
+    border: 1px solid #d8d8da;
+}
+
+#forgot-password-link {
+    margin-top: -18px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    text-align: center;
+}

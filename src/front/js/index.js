@@ -2,9 +2,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-//include your index.scss file into the bundle
-import "../styles/background.css";
-import "../styles/index.css";
+// //include your index.scss file into the bundle
+// import "../styles/background.css";
+// import "../styles/createProject.css";
+// import "../styles/editProject.css";
+// import "../styles/listProject.css";
 
 //import your own components
 import Layout from "./layout";

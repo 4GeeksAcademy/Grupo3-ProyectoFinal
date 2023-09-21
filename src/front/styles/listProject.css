@@ -1,0 +1,52 @@
+.btn-custom {
+    background-color: #23CFB0;
+    border-color: #23CFB0;
+    color: #ffffff;
+}
+
+.btn-custom:hover {
+    background-color: #1fb39b;
+    border-color: #1fb39b;
+    color: #ffffff;
+}
+
+.btn-custom:active {
+    background-color: #1fa385 !important;
+    border-color: #1fa385 !important;
+    color: #ffffff !important;
+}
+
+.project-card-title, .project-card-description{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.project-card-title{
+    color: #23CFB0;
+}
+@media (min-width: 576px) {
+    .cards {
+        width: 90%;
+    }
+}
+
+@media (min-width: 768px) {
+    .cards {
+        width: 75%;
+    }
+}
+
+@media (min-width: 992px) {
+    .cards {
+        width: 60%;
+    }
+}
+
+@media (min-width: 1400px) {
+    .cards {
+        width: 50%;
+    }
+}

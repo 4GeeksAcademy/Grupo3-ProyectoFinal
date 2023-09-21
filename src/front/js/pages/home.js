@@ -1,36 +1,27 @@
-import React, { useContext } from "react";
-import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
-import "../../styles/home.css";
-import "../../styles/background.css";
-import { Background } from "../component/background";
+import React from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import '../../styles/home.css';
+import Navbar from "../component/navbar";
 
-
-export const Home = () => {
-	const { store, actions } = useContext(Context);
+const Home = () => {
+	const backgroundImageUrl = 'https://img.freepik.com/fotos-premium/escritorio-trabajo-negocios-blanco-computadora-portatil-planta-verde-gafas-oficina-cuaderno-lapiz-sobre-fondo-blanco-freelancer-negocios-linea-educacion-linea-vista-superior-endecha-plana_217116-562.jpg?w=1060';
 
 	return (
 		<>
-			<Background />
-			{/* <div className="text-center mt-5">
-				<h1>Hello Rigo!!</h1>
-				<p>
-					<img src={rigoImageUrl} />
-				</p>
-				<div className="alert alert-info">
-					{store.message || "Loading message from the backend (make sure your python backend is running)..."}
+			<Navbar />
+			<div className="home-container">
+				<div className="center-box">
+					<div className="box-content">
+						<h2 className="box-title">Bienvenido a FreeLancify</h2>
+						<p className="box-description">La plataforma perfecta para freelancers</p>
+						<button className="btn custom-button btn-primary" id="btn-home"><Link to="/register" id="linkRegister">Registrarse</Link></button>
+					</div>
 				</div>
-				<p>
-					This boilerplate comes with lots of documentation:{" "}
-					<a href="https://start.4geeksacademy.com/starters/react-flask">
-						Read documentation
-					</a>
-				</p>
-
-			</div> */}
-
-
+				<img src={backgroundImageUrl} alt="Fondo" className="background-image" />
+			</div>
 		</>
 
 	);
 };
+
+export default Home;

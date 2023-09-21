@@ -3,22 +3,45 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/addClient.css";
+import Background from "../component/background";
 
 export const AddClient = () => {
 	const { store, actions } = useContext(Context);
-	const [saveClient, setSaveClient] = useState()
+	const [saveClient, setSaveClient] = useState({
+		full_name: '',
+		email: '',
+		phone: '',
+		description: '',
+		address: '',
+		country: '',
+		company_name: '',
+	});
+
+	const handleChange=(e)=>{
+		setSaveClient({
+			...saveClient, 
+			[e.target.name]: e.target.value
+		})
+	};
+	
+	const handleSubmit =(e)=>{
+		e.preventDefault()
+		actions.addClient(saveClient)
+	}
 
 	return (
-		<form className="my-form">
+		<Background>
+			<form className="kris-my-form bg-white shadow-lg rounded-4 p-2 p-md-3 p-lg-4 p-xS-5 position-absolute top-50 start-50 translate-middle" 
+			onSubmit={handleSubmit}>
 			<div className="container">
-				<h1 className="fw-bold tx-white">Nuevo Cliente</h1>
 				<div className="baki">
+					<h1 className="fs-3 pb-4 text-center"><strong><font color="#23CFB0">Nuevo Cliente</font></strong></h1>
 					<div className="image-profile">
 						<img src="https://picsum.photos/150" alt=""/>
 					</div>
 					<div className="backe">
-						<select>
-							<option value disabled>-- Elige un país --</option>
+						<select name="country" onChange={handleChange}>
+							<option>-- Elige un país --</option>
 							<option>Argentina</option>			
 							<option>Bolivia</option>
 							<option>Chile</option>
@@ -40,30 +63,31 @@ export const AddClient = () => {
 							<option>Venezuela</option>
 							<option>Otro</option>      
 						</select>
-						<div className="grid">
-							<input type="text" placeholder="Nombre de empresa" ></input>
+						<div className="grid pb-2">
+							<input type="text" placeholder="Nombre de la Empresa" name="company_name"  onChange={handleChange}></input>
 						</div>
-						<div className="grid grid-2">
-							<input type="text" placeholder="Nombre" required></input>
-							<input type="text" placeholder="Correo electrónico" required></input>
+						<div className="grid grid-2 pb-2">
+							<input type="text" name="full_name"  placeholder="Nombre Completo *" required onChange={handleChange}></input>
+							<input type="text" name="email" placeholder="Correo Electrónico *" required onChange={handleChange}></input>
 						</div>
-						<div className="grid grid-2">
-							<input type="text" placeholder="Número telefónico" required></input>
-							<input type="text" placeholder="Residencia"></input>
+						<div className="grid grid-2 pb-2">
+							<input type="text" name="phone" placeholder="Número Telefónico *" required onChange={handleChange}></input>
+							<input type="text" name="address" placeholder="Residencia" onChange={handleChange}></input>
 						</div>
-						<textarea placeholder="Descripción de cliente"></textarea>
-						<div className="grid grid-3">
-							<div className="required-msg text-white" required>Campos requeridos</div>
+						<textarea name="description" placeholder="Descripción de cliente" onChange={handleChange}></textarea>
+						<div className="grid grid-3 pb-2">
+							<div className="required-msg" required><font color="#23CFB0">Campos requeridos *</font></div>
 								<button className="btn-grid" type="submit">
 									<span className="front">Guardar</span>
 								</button>
 								<button className="btn-grid" type="reset">
-                                    <Link  to={`/clientList`} className="n">Cancelar</Link>
+                                    <Link  to={`/clientList`} className="text-white">Cancelar</Link>
 								</button> 
 						</div>
 					</div>
 				</div>
 			</div>
 		</form>
+		</Background>
 	);
 };
