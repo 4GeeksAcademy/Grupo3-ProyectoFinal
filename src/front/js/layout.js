@@ -19,7 +19,6 @@ import { ClientList } from "./pages/clientList";
 //import { AddClient } from "./pages/addClient";
 import injectContext from "./store/appContext";
 import { Footer } from "./component/footer";
-import Navbar from "./component/navbar";
 import Nosotros from "./pages/Nosotros";
 
 //create your first component here
@@ -34,7 +33,7 @@ const Layout = () => {
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
-                    <Navbar />
+                    
                     <Routes>
                         {/* <Route element={<Home />} path="/" /> */}
                         <Route element={<Home />} path="/" />

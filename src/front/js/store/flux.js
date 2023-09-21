@@ -110,12 +110,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			signUpUser: async () => {
-				const store = getStore()
-				const actions = getActions()
+				const store = getStore();
+				const actions = getActions();
 				try {
-
 					if (actions.isPropertyEmpty(store.user_data)) {
-						alert("Le falta llenar algunos datos");
+						Swal.fire({
+							icon: 'error',
+							title: 'Faltan datos',
+							text: 'Por favor, complete todos los campos.',
+						});
 						return;
 					}
 
@@ -123,25 +126,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 						method: 'POST',
 						body: JSON.stringify(store.user_data),
 						headers: {
-							'Content-Type': 'application/json'
-						}
-					})
+							'Content-Type': 'application/json',
+						},
+					});
 
-					const result = await response.json()
-					if (response.status == 400) {
-						setStore({ signup: false })
-						alert(result.message)
-
+					const result = await response.json();
+					if (response.status === 400) {
+						setStore({ signup: false });
+						Swal.fire({
+							icon: 'error',
+							title: 'Error de registro',
+						});
 					}
 
 					if (response.ok) {
-						setStore({ signup: true })
-						alert("User add success")
+						setStore({ signup: true });
+						Swal.fire({
+							icon: 'success',
+							title: 'Registro exitoso',
+							text: 'Usuario registrado correctamente.',
+							showConfirmButton: false,
+							timer: 1800,
+						});
 					}
-
 				} catch (error) {
 					console.error(error + " Error loading message from backend");
-					setStore({ signup: false })
+					setStore({ signup: false });
 				}
 			},
 
@@ -150,7 +160,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const actions = getActions()
 				try {
 					if (actions.isPropertyEmpty(store.login_user)) {
-						alert("Le falta llenar algunos datos :S");
 						return;
 					}
 
@@ -170,7 +179,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return true;
 					} else {
 						setStore({ isloged: false })
-						alert(result.message)
+						Swal.fire({
+							icon: 'error',
+							title: 'Correo o contraseña incorrecta',
+						});
 					}
 
 				} catch (error) {
@@ -269,7 +281,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return true;
 					} else {
 						const result = await response.json();
-						alert(result.message);
 					}
 				} catch (error) {
 					console.error(error + ' Error requesting password reset');
