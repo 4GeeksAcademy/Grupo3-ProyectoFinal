@@ -106,13 +106,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(data),
 					headers: {
 						'Content-Type': 'application/json',
-						'Authorization':  `Bearer ${token}`
+						'Authorization': `Bearer ${token}`
 					},
-				} 
-				fetch(process.env. BACKEND_URL + 'api/user/clients', options)
-				.then(response => response.json())
-				.then(results => console.log(results))
-				.catch(error => error)
+				}
+				fetch(process.env.BACKEND_URL + 'api/user/clients', options)
+					.then(response => response.json())
+					.then(results => console.log(results))
+					.catch(error => error)
 			},
 			editClient: (data) => {
 				const options = {
@@ -121,11 +121,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: {
 						'Content-Type': 'application/json',
 					},
-				} 
-				fetch(process.env. BACKEND_URL + 'api/user/clients', options)
-				.then(response => response.json())
-				.then(results => console.log(results))
-				.catch(error => error)
+				}
+				fetch(process.env.BACKEND_URL + 'api/user/clients', options)
+					.then(response => response.json())
+					.then(results => console.log(results))
+					.catch(error => error)
 			},
 
 
@@ -234,8 +234,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-
-
 			getQuotations: async () => {
 				try {
 					const response = await fetch(process.env.BACKEND_URL + "/api/quotation/get");
@@ -283,6 +281,53 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 			},
+
+			deleteQuotation: (quotationId) => {
+				Swal.fire({
+					title: '¿Estás seguro?',
+					text: "Una vez eliminado, no podrás recuperar esta cotización!",
+					icon: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Sí, eliminar!'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						const token = localStorage.getItem("jwt-token");
+						const options = {
+							method: 'DELETE',
+							headers: {
+								'Content-Type': 'application/json',
+								'Authorization': `Bearer ${token}`
+							},
+						};
+
+						fetch(`${process.env.BACKEND_URL}api/quotation/${quotationId}`, options)
+							.then(response => {
+								if(response.status==401){
+									throw new Error('La sesión ha expirado');
+								}
+								if (!response.ok) {
+									throw new Error('Error al eliminar la cotización');
+								}
+								return response.json();
+							})
+							.then(results => {
+								Swal.fire("Eliminado", "La cotización ha sido eliminada", "success").then(() => {
+									getActions().getQuotations();
+								});
+							})
+
+							.catch(error => {
+								Swal.fire("Error", "Ocurrió un error al eliminar la cotización", "error");
+							});
+					} else {
+						Swal.fire("Cancelado", "La cotización está a salvo!", "info");
+					}
+				});
+			},
+
+
 
 			resetPasswordRequest: async (email) => {
 				try {
