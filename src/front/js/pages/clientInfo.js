@@ -7,6 +7,14 @@ import Background from "../component/background";
 
 export const ClientInfo = () => {
 	const { store, actions } = useContext(Context);
+    const [detail, setDetail] = useState({});
+
+    let findClients = ()=>{
+     let person = store.clients.find((item)=> item._id == params.id)
+     setDetail(person)
+    }
+    
+    useEffect(()=>{findClients()},[store.clients])
     actions.getClientsById()
 
 
@@ -19,32 +27,22 @@ export const ClientInfo = () => {
                     <div>
                      
                         <img className="round" src="https://picsum.photos/150" alt=""/>
-                            {store.clients.length == 0 ? "Cargando información": store.clients.map((item, index)=>{
-                                return (
-                                    <>
-                                    <h3>{item.full_name}</h3>
-                                    <h6>{item.company_name}</h6>
-                                    <p>{item.description}</p>
+                                    <h3>{detail?.properties?.full_name}</h3>
+                                    <h6>{detail?.properties?.company_name}</h6>
+                                    <p>{detail?.properties?.description}</p>
                                     <div className="buttons">
-                                        <button className="btn btn-custom btn-sm mb-2 mb-md-3 me-2 justify-content-end text-white">
-                                            Añadir Proyecto
-                                        </button>
-                                            <button className="btn btn-custom btn-sm mb-2 mb-md-3 me-2 justify-content-end text-white">
-                                                Añadir cotización 
-                                            </button>
+                                        <Link  to={`/createProject`} className="btn btn-custom btn-sm mb-2 mb-md-3 me-2 justify-content-end text-white">Añadir Proyecto</Link>
+                                        <Link  to={`/quotation/create`} className="btn btn-custom btn-sm mb-2 mb-md-3 me-2 justify-content-end text-white">Añadir Cotización</Link>
                                     </div>
                                     <div className="skills">
                                         <h6>Información de cliente</h6>
                                         <ul>
-                                            <li>{item.address}</li>
-                                            <li>{item.country}</li>
-                                            <li>{item.phone}</li>
-                                            <li>{item.email}</li> 
+                                            <li>{detail?.properties?.address}</li>
+                                            <li>{detail?.properties?.country}</li>
+                                            <li>{detail?.properties?.phone}</li>
+                                            <li>{detail?.properties?.email}</li> 
                                         </ul>
                                     </div>
-                                    </>
-                                );
-                            })};
                     </div>
                 </div>
             </div>

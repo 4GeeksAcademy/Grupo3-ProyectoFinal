@@ -1,33 +1,16 @@
 
-/* body {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	min-height: 100vh;
-	margin: 0;
-} */
-
-.fo{
-  background-color: #23cfb06b;
-  width: 550px;
-  height: 675px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-}
-
 .kris-the-card-container {
-  background-color: #f8f9fa;
-  border-radius: 5px;
   color: #0ca3bb;
-  padding-top: 30px;
-  position: relative;
   width: 500px;
   max-width: 100%;
   text-align: center;
-  margin-top: 25px;
-  margin-left: 20px;
 }
-
+.volver-b{
+	justify-content: start;
+}
+.editar-b{
+	justify-content: end;
+}
 .kris-the-card-container .round {
 	border: 1px solid #03BFCB;
 	border-radius: 50%;
@@ -35,21 +18,15 @@
 }
 
 .skills {
-	background-color: #1F1A36;
-	text-align: left;
+	background-color: #1f5156;
 	padding: 15px;
-	margin-top: 30px;
-}
-
-.skills ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+	color: white;
+	border-radius: 15px;
+	margin-top: 15px;
 }
 
 .skills ul li {
-	border: 1px solid #1f4b4b;
-	border-radius: 2px;
+	border: 1px solid #62d1d1;
 	display: inline-block;
 	font-size: 12px;
 	margin: 0 7px 7px 0;
