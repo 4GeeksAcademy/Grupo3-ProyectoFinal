@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/editInfo.css";
 import Background from "../component/background";
@@ -8,6 +8,7 @@ import Background from "../component/background";
 export const EditInfo = () => {
 	const { store, actions } = useContext(Context);
 	const [updateClient, setUpdateClient] = useState({});
+	const params = useParams();
 	
 	const handleUpdate=(e)=>{
 		setUpdateClient({
@@ -17,7 +18,7 @@ export const EditInfo = () => {
 	}
 	const handleSubmitNew = (e) =>{
 		e.preventDefault()
-		actions.editClient(updateClient)
+		actions.editClient(updateClient, params.id)
 	};
 
 	return (

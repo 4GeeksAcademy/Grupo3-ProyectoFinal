@@ -11,7 +11,6 @@ import { Context } from "../store/appContext";
 
 export const ClientList = () => {
 	const { store, actions } = useContext(Context);
-
 	useEffect(() => {
  	actions.getClients();	
 	}, []);
@@ -56,7 +55,8 @@ export const ClientList = () => {
 											<th className="image-porfi" scope="row"><img src="https://picsum.photos/150" alt=""/></th>
 											<td>{item.full_name}</td>
 											<td>
-											<button className="btnClose" onClick={() => deleteThem('client_id')}><FontAwesomeIcon icon={faTrashCan} className="add-icon" /></button><Link  to={`/clientInfo`} className=" d-flex justify-content-end "> <FontAwesomeIcon icon={faInfo} className="add-icon" /></Link>
+											<button className="btnClose" onClick={() => deleteThem(item.id)}><FontAwesomeIcon icon={faTrashCan} className="add-icon" /></button>
+											<Link  to={`/clientInfo/${item.id}`} className=" d-flex justify-content-end "> <FontAwesomeIcon icon={faInfo} className="add-icon" /></Link>
 											</td>
 										</tr>)
 									})}

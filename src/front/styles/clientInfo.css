@@ -5,12 +5,7 @@
   max-width: 100%;
   text-align: center;
 }
-.volver-b{
-	justify-content: start;
-}
-.editar-b{
-	justify-content: end;
-}
+
 .kris-the-card-container .round {
 	border: 1px solid #03BFCB;
 	border-radius: 50%;

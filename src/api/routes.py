@@ -71,11 +71,15 @@ def post_client():
     return jsonify({"msg": "Se ha creado el cliente", "new_client_info": new_client.serialize()})
 
   
-@api.route('/user/clients', methods=['PUT'])
+@api.route('/user/clients/<int:clients_id>', methods=['PUT'])
 @jwt_required()
-def modify_clients():
+def modify_clients(clients_id):
     body = request.get_json(silent = True)
     user_id = get_jwt_identity()
+    company_name = ""
+    address = ""
+    description = ""
+    country = ""
     if "full_name" not in body:
         raise APIException("Debes enviar el nombre completo del cliente a modificar", status_code=400)
     if "email" not in body:
@@ -90,13 +94,23 @@ def modify_clients():
         country = body['country']
     if "company_name" in body:
         company_name: body["company_name"]
-        changedClient = Client(user_id = user_id, full_name = body['full_name'], email = body['email'], phone = body['phone'], address = address,  company_name = company_name, description = description, country = country)
-    db.session.add(changedClient)
+    changedClient = Client.query.get(clients_id)
+    if changedClient is None:
+        raise APIException("El Cliente con el id solicitado no existe")
+    if changedClient.user_id != user_id: 
+        raise APIException("El usuario no tiene permiso para cambiar los clientes")
+    changedClient.full_name = body['full_name']
+    changedClient.email = body['email']
+    changedClient.phone = body['phone']
+    changedClient.description = description
+    changedClient.address = address
+    changedClient.country = country
+    changedClient.company_name = company_name
     db.session.commit()
     return jsonify({"msg": 'Completed'})
 
 
-@api.route('user/clients', methods=['DELETE'])
+@api.route('user/clients/<int:client_id>', methods=['DELETE'])
 def delete_clients(client_id):
     try:
         client = Client.query.get(client_id)

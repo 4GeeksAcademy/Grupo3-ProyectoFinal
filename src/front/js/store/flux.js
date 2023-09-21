@@ -123,8 +123,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(results => console.log(results))
 				.catch(error => error)
 			},
-			editClient: (data) => {
+			editClient: (data, id) => {
 				const token = localStorage.getItem("jwt-token")
+				console.log(data);
 				const options = {
 					method: 'PUT',
 					body: JSON.stringify(data),
@@ -133,7 +134,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						'Authorization':  `Bearer ${token}`
 					},
 				} 
-				fetch(process.env. BACKEND_URL + 'api/user/clients', options)
+				fetch(process.env. BACKEND_URL + `api/user/clients/${id}`, options)
 				.then(response => response.json())
 				.then(results => console.log(results))
 				.catch(error => error)
