@@ -57,10 +57,6 @@ export const Profile = () => {
                                     </label>
                                     <p className="label-box">{store.current_user.about_me}</p>
                                 </div>
-
-                                <div className="mt-4">
-                                    <Link to="/editProfile" className="btn btn-primary">Editar Perfil</Link>
-                                </div>
                             </div>
                         </div>
                     </div>
