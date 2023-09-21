@@ -68,6 +68,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.log(error);
 					})
 			},
+			getClientsById: (id) => {
+				fetch(process.env.BACKEND_URL + `api/user/clients/${id}`)
+					.then((response) => response.json())
+					.then((data) => {
+						setStore({ clients: data.clients })
+					}).catch((error) => {
+						console.log(error);
+					})
+			},
 
 			getClientById: async (id) => {
 				try {
@@ -99,7 +108,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 		console.log(error);})
 			// },
 
-			deleteClients: async (client_Id) => {
+			deleteClients: async (clientId) => {
 				Swal.fire({
 					title: '¿Estás seguro?',
 					text: "Una vez eliminado el cliente no se podrá recuperar información relacionada a esta persona",
@@ -111,7 +120,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}).then(async (result) => {
 					if (result.isConfirmed) {
 						try {
-							const response = await fetch(process.env.BACKEND_URL + `api/user/clients/${client_Id}`, {
+							const response = await fetch(process.env.BACKEND_URL + `api/user/clients/${clientId}`, {
 								method: 'DELETE',
 							});
 							if (response.ok) {
@@ -145,18 +154,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(results => console.log(results))
 					.catch(error => error)
 			},
-			editClient: (data) => {
+			editClient: (data, id) => {
+				const token = localStorage.getItem("jwt-token")
+				console.log(data);
 				const options = {
 					method: 'PUT',
 					body: JSON.stringify(data),
 					headers: {
 						'Content-Type': 'application/json',
+						'Authorization':  `Bearer ${token}`
 					},
-				}
-				fetch(process.env.BACKEND_URL + 'api/user/clients', options)
-					.then(response => response.json())
-					.then(results => console.log(results))
-					.catch(error => error)
+				} 
+				fetch(process.env. BACKEND_URL + `api/user/clients/${id}`, options)
+				.then(response => response.json())
+				.then(results => console.log(results))
+				.catch(error => error)
 			},
 
 

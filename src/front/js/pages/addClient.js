@@ -35,7 +35,7 @@ export const AddClient = () => {
 			onSubmit={handleSubmit}>
 			<div className="container">
 				<div className="baki">
-					<h1 className="fs-3 pb-4 text-center"><strong>Nuevo Cliente</strong></h1>
+					<h1 className="fs-3 pb-4 text-center"><strong><font color="#23CFB0">Nuevo Cliente</font></strong></h1>
 					<div className="image-profile">
 						<img src="https://picsum.photos/150" alt=""/>
 					</div>
@@ -76,7 +76,7 @@ export const AddClient = () => {
 						</div>
 						<textarea name="description" placeholder="Descripción de cliente" onChange={handleChange}></textarea>
 						<div className="grid grid-3 pb-2">
-							<div className="required-msg" required>Campos requeridos *</div>
+							<div className="required-msg" required><font color="#23CFB0">Campos requeridos *</font></div>
 								<button className="btn-grid" type="submit">
 									<span className="front">Guardar</span>
 								</button>
